@@ -16,7 +16,8 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style lang="scss">
+@import "./styles/globals.scss";
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
 
 html,
@@ -25,7 +26,7 @@ body {
   margin: 0;
   font-family: "Roboto", sans-serif;
   height: 100%;
-  color: brown;
+  color: $text-color;
   font-size: 1rem;
 }
 
