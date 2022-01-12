@@ -18,13 +18,13 @@ export default Vue.extend({
 
 <style lang="scss">
 @import "./styles/globals.scss";
-@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Nunito", sans-serif;
   height: 100%;
   color: $text-color;
   font-size: 1rem;
