@@ -43,6 +43,11 @@ export default defineComponent({
 }
 
 .button-start-order {
+  margin-block-start: 3rem;
+  font-size: 1.75rem;
+  padding-inline: 3rem;
+  padding-block: 1rem;
+  border-radius: 1rem;
   background-color: $text-color;
   color: white;
 }

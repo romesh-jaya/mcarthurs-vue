@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import Landing from "./components/Landing.vue";
 
 export default defineComponent({
@@ -24,7 +24,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Nunito";
   height: 100%;
   color: $text-color;
   font-size: 1rem;
@@ -33,6 +33,10 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button {
+  font-family: "Nunito";
 }
 
 * {
