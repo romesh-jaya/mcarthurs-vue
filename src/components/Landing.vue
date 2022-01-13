@@ -1,15 +1,20 @@
 <template>
   <div class="landing-container">
-    <img src="../assets/fastfood.jpg" class="hero" />
+    <img src="../assets/fastfood.webp" class="hero" />
     <div class="title">McArthur's Colombo</div>
+    <Button class="button-start-order">Start Order</Button>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { defineComponent } from "vue";
+import Button from "../common/Button.vue";
 
-export default Vue.extend({
+export default defineComponent({
   name: "Landing",
+  components: {
+    Button,
+  },
   data() {
     return {};
   },
@@ -17,6 +22,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+@import "../styles/globals.scss";
+
 .landing-container {
   height: 100%;
 }
@@ -36,5 +43,10 @@ export default Vue.extend({
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+
+.button-start-order {
+  background-color: $text-color;
+  color: white;
 }
 </style>

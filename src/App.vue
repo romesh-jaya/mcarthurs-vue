@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import Landing from "./components/Landing.vue";
 
-export default Vue.extend({
+export default defineComponent({
   name: "App",
   components: {
     Landing,
