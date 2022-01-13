@@ -1,18 +1,14 @@
 <template>
   <div id="app">
-    <Landing />
+    <router-view />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Landing from "./components/Landing.vue";
 
 export default defineComponent({
   name: "App",
-  components: {
-    Landing,
-  },
 });
 </script>
 
