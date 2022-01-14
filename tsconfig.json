@@ -16,6 +16,7 @@
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
     "types": ["webpack-env"],
     "paths": {
       "@/*": ["src/*"]

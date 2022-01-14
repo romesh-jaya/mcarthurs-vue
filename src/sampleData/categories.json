@@ -1,0 +1,12 @@
+{
+  "categories": [
+    { "id": "Burgers", "value": "Burgers" },
+    { "id": "Fries", "value": "Fries" },
+    { "id": "Drinks", "value": "Drinks" },
+    { "id": "Desserts", "value": "Desserts" },
+    { "id": "Appetizers", "value": "Appetizers" },
+    { "id": "KidsMeals", "value": "Kids Meals" },
+    { "id": "Rice", "value": "Rice" },
+    { "id": "Promotions", "value": "Promotions" }
+  ]
+}
