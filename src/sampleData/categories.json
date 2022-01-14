@@ -1,12 +1,36 @@
 {
   "categories": [
-    { "id": "Burgers", "value": "Burgers" },
-    { "id": "Fries", "value": "Fries" },
-    { "id": "Drinks", "value": "Drinks" },
-    { "id": "Desserts", "value": "Desserts" },
-    { "id": "Appetizers", "value": "Appetizers" },
-    { "id": "KidsMeals", "value": "Kids Meals" },
-    { "id": "Rice", "value": "Rice" },
-    { "id": "Promotions", "value": "Promotions" }
+    {
+      "id": "Burgers",
+      "value": "Burgers",
+      "thumbnailURL": "./images/burger.jpg"
+    },
+    { "id": "Fries", "value": "Fries", "thumbnailURL": "./images/fries.webp" },
+    {
+      "id": "Drinks",
+      "value": "Drinks",
+      "thumbnailURL": "./images/drink.jpg"
+    },
+    {
+      "id": "Desserts",
+      "value": "Desserts",
+      "thumbnailURL": "./images/dessert.jpg"
+    },
+    {
+      "id": "Appetizers",
+      "value": "Appetizers",
+      "thumbnailURL": "./images/appetizer.jpg"
+    },
+    {
+      "id": "KidsMeals",
+      "value": "Kids Meals",
+      "thumbnailURL": "./images/kids.jpg"
+    },
+    { "id": "Rice", "value": "Rice", "thumbnailURL": "./images/biriyani.jpg" },
+    {
+      "id": "Promotions",
+      "value": "Promotions",
+      "thumbnailURL": "./images/promotions.png"
+    }
   ]
 }

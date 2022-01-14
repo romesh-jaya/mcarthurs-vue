@@ -1,7 +1,8 @@
 <template>
   <div class="container-options">
     <div class="card" v-for="option in options" :key="option.id">
-      {{ option.value }}
+      <img :src="option.thumbnailURL" class="card-image" />
+      <div class="card-text">{{ option.value }}</div>
     </div>
   </div>
 </template>
@@ -35,10 +36,30 @@ export default defineComponent({
   display: grid;
   place-items: center;
   font-size: 1.5rem;
+  position: relative;
+  color: white;
+  overflow: hidden;
 }
 
 .card:active {
   color: $active-color;
   box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+}
+
+.card-image {
+  height: 100%;
+  width: 100%;
+  filter: brightness(75%);
+  object-fit: cover;
+}
+
+.card-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-weight: 500;
 }
 </style>
