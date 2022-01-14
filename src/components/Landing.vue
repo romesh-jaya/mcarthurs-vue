@@ -2,7 +2,9 @@
   <div class="landing-container">
     <img src="../assets/fastfood.webp" class="hero" />
     <div class="title">McArthur's Colombo</div>
-    <Button class="button-start-order">Start Order</Button>
+    <Button class="button-start-order" @on-click="onStartOrderClicked"
+      >Start Order</Button
+    >
   </div>
 </template>
 
@@ -14,6 +16,11 @@ export default defineComponent({
   name: "Landing",
   components: {
     Button,
+  },
+  methods: {
+    onStartOrderClicked() {
+      this.$router.push("/select-category");
+    },
   },
 });
 </script>
