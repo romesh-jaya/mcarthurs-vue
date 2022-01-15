@@ -25,6 +25,7 @@ export default defineComponent({
   flex-wrap: wrap;
   flex-direction: row;
   align-content: center;
+  justify-content: center;
   gap: 2.5rem;
   margin-inline: 3rem;
 }
