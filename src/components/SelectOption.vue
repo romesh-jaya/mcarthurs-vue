@@ -24,8 +24,9 @@ export default defineComponent({
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  align-content: center;
   gap: 2.5rem;
-  margin-inline: 2rem;
+  margin-inline: 3rem;
 }
 
 .card {

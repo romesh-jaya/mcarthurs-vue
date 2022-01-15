@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <div class="category-title">Select Category</div>
-    <SelectOption :options="categories" />
+    <SelectOption :options="categories" class="select-categories" />
+    <div class="navbar-bottom">
+      <NavButton @on-click="onBackClicked">BACK</NavButton>
+    </div>
   </div>
 </template>
 
@@ -9,14 +12,20 @@
 import { defineComponent } from "vue";
 import SelectOption from "./SelectOption.vue";
 import categoryData from "../sampleData/categories.json";
+import NavButton from "../common/NavButton.vue";
 
 export default defineComponent({
   name: "SelectCategory",
-  components: { SelectOption },
+  components: { SelectOption, NavButton },
   data() {
     return {
       categories: categoryData.categories,
     };
+  },
+  methods: {
+    onBackClicked() {
+      this.$router.push("/");
+    },
   },
 });
 </script>
@@ -32,5 +41,14 @@ export default defineComponent({
   margin-block: 2rem;
   font-size: 2rem;
   font-weight: 900;
+}
+
+.select-categories {
+  flex: 1 0px;
+}
+
+.navbar-bottom {
+  padding: 3rem;
+  text-align: left;
 }
 </style>
