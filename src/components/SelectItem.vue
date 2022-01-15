@@ -4,7 +4,11 @@
       Select Item: {{ category }}
     </div>
     <div v-else class="category-title">Category not found</div>
-    <SelectOption :options="items" class="select-categories" />
+    <SelectOption
+      :options="items"
+      class="select-categories"
+      @option-clicked="onItemClicked"
+    />
     <div class="navbar-bottom">
       <NavButton @on-click="onBackClicked">BACK</NavButton>
     </div>
@@ -27,6 +31,9 @@ export default defineComponent({
   methods: {
     onBackClicked() {
       this.$router.push("/select-category");
+    },
+    onItemClicked(itemId: string) {
+      this.$router.push("/items/" + itemId);
     },
   },
   computed: {

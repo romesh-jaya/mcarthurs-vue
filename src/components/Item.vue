@@ -30,6 +30,10 @@ export default defineComponent({
   },
   methods: {
     onBackClicked() {
+      if (this.item) {
+        this.$router.push("/select-item/" + this.item.categoryId);
+        return;
+      }
       this.$router.push("/select-category");
     },
   },
