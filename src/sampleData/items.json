@@ -3,84 +3,84 @@
     {
       "id": "Burger2Layer",
       "value": "Double Layer Burger",
-      "categoryId": "Burgers",
-      "thumbnailURL": "./images/burger.jpg",
+      "categoryId": "burgers",
+      "thumbnailURL": "/images/burger.jpg",
       "description": "Juicy 2 layers of meat in a big bun"
     },
     {
       "id": "Burger3Layer",
       "value": "Triple Burger",
-      "categoryId": "Burgers",
-      "thumbnailURL": "./images/burger.jpg",
+      "categoryId": "burgers",
+      "thumbnailURL": "/images/burger.jpg",
       "description": "Juicy 3 layers of meat in a big bun"
     },
     {
       "id": "FriesSmall",
       "value": "Fries Small",
-      "categoryId": "Fries",
-      "thumbnailURL": "./images/fries.webp",
+      "categoryId": "fries",
+      "thumbnailURL": "/images/fries.webp",
       "description": "Fries to make you go hopping"
     },
     {
       "id": "FriesLarge",
       "value": "Fries Large",
-      "categoryId": "Fries",
-      "thumbnailURL": "./images/fries.webp",
+      "categoryId": "fries",
+      "thumbnailURL": "/images/fries.webp",
       "description": "Fries to make you go hopping"
     },
     {
       "id": "DrinkOrange",
       "value": "Orange Juice",
-      "categoryId": "Drinks",
-      "thumbnailURL": "./images/drink.jpg",
+      "categoryId": "drinks",
+      "thumbnailURL": "/images/drink.jpg",
       "description": "Juice bursting with Oranges"
     },
     {
       "id": "DrinkMango",
       "value": "Mango Juice",
-      "categoryId": "Drinks",
-      "thumbnailURL": "./images/drink.jpg",
+      "categoryId": "drinks",
+      "thumbnailURL": "/images/drink.jpg",
       "description": "Juice bursting with Mango"
     },
     {
       "id": "DessertMousse",
       "value": "Chocolate Mousse",
-      "categoryId": "Desserts",
-      "thumbnailURL": "./images/dessert.jpg",
+      "categoryId": "desserts",
+      "thumbnailURL": "/images/dessert.jpg",
       "description": "Mousse oozing with chocolate"
     },
     {
       "id": "DessertBrownie",
       "value": "Brownie",
-      "categoryId": "Desserts",
-      "thumbnailURL": "./images/dessert.jpg",
+      "categoryId": "desserts",
+      "thumbnailURL": "/images/dessert.jpg",
       "description": "Best in the world"
     },
     {
       "id": "AppetizerChickenWings",
       "value": "Chicken Wings",
-      "categoryId": "Appetizers",
-      "thumbnailURL": "./images/appetizer.jpg",
+      "categoryId": "appetizers",
+      "thumbnailURL": "/images/appetizer.jpg",
       "description": "Best way to set the mood"
     },
     {
       "id": "KidsMeal",
       "value": "Kids Meal",
-      "categoryId": "Kids Meals",
-      "thumbnailURL": "./images/kids.jpg"
+      "categoryId": "kids-meals",
+      "thumbnailURL": "/images/kids.jpg"
     },
     {
       "id": "RiceBiriyani",
       "value": "Biriyani",
-      "categoryId": "Rice",
-      "thumbnailURL": "./images/biriyani.jpg",
+      "categoryId": "rice",
+      "thumbnailURL": "/images/biriyani.jpg",
       "description": "For the true Asian tastebuds"
     },
     {
       "id": "PromotionComboOffer",
       "value": "Combo Offer",
-      "categoryId": "Promotions",
-      "thumbnailURL": "./images/promotions.png",
+      "categoryId": "promotions",
+      "thumbnailURL": "/images/promotions.png",
       "description": "50% off for the combo"
     }
   ]
