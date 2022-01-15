@@ -1,83 +1,83 @@
 {
   "items": [
     {
-      "id": "Burger2Layer",
+      "id": "burger-double-layer",
       "value": "Double Layer Burger",
       "categoryId": "burgers",
       "thumbnailURL": "/images/burger.jpg",
       "description": "Juicy 2 layers of meat in a big bun"
     },
     {
-      "id": "Burger3Layer",
+      "id": "burger-triple-layer",
       "value": "Triple Burger",
       "categoryId": "burgers",
       "thumbnailURL": "/images/burger.jpg",
       "description": "Juicy 3 layers of meat in a big bun"
     },
     {
-      "id": "FriesSmall",
+      "id": "fries-small",
       "value": "Fries Small",
       "categoryId": "fries",
       "thumbnailURL": "/images/fries.webp",
       "description": "Fries to make you go hopping"
     },
     {
-      "id": "FriesLarge",
+      "id": "fries-large",
       "value": "Fries Large",
       "categoryId": "fries",
       "thumbnailURL": "/images/fries.webp",
       "description": "Fries to make you go hopping"
     },
     {
-      "id": "DrinkOrange",
+      "id": "drink-orange",
       "value": "Orange Juice",
       "categoryId": "drinks",
       "thumbnailURL": "/images/drink.jpg",
       "description": "Juice bursting with Oranges"
     },
     {
-      "id": "DrinkMango",
+      "id": "drink-mango",
       "value": "Mango Juice",
       "categoryId": "drinks",
       "thumbnailURL": "/images/drink.jpg",
       "description": "Juice bursting with Mango"
     },
     {
-      "id": "DessertMousse",
+      "id": "dessert-mousse",
       "value": "Chocolate Mousse",
       "categoryId": "desserts",
       "thumbnailURL": "/images/dessert.jpg",
       "description": "Mousse oozing with chocolate"
     },
     {
-      "id": "DessertBrownie",
+      "id": "dessert-brownie",
       "value": "Brownie",
       "categoryId": "desserts",
       "thumbnailURL": "/images/dessert.jpg",
       "description": "Best in the world"
     },
     {
-      "id": "AppetizerChickenWings",
+      "id": "appetizer-chicken-wings",
       "value": "Chicken Wings",
       "categoryId": "appetizers",
       "thumbnailURL": "/images/appetizer.jpg",
       "description": "Best way to set the mood"
     },
     {
-      "id": "KidsMeal",
+      "id": "kids-meal",
       "value": "Kids Meal",
       "categoryId": "kids-meals",
       "thumbnailURL": "/images/kids.jpg"
     },
     {
-      "id": "RiceBiriyani",
+      "id": "rice-biriyani",
       "value": "Biriyani",
       "categoryId": "rice",
       "thumbnailURL": "/images/biriyani.jpg",
       "description": "For the true Asian tastebuds"
     },
     {
-      "id": "PromotionComboOffer",
+      "id": "promotion-combo-offer",
       "value": "Combo Offer",
       "categoryId": "promotions",
       "thumbnailURL": "/images/promotions.png",
