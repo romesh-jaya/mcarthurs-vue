@@ -1,6 +1,11 @@
 <template>
   <div class="container-options">
-    <div class="card" v-for="option in options" :key="option.id">
+    <div
+      class="card"
+      v-for="option in options"
+      :key="option.id"
+      @click="$emit('option-clicked', option.id)"
+    >
       <img :src="option.thumbnailURL" class="card-image" />
       <div class="card-text">{{ option.value }}</div>
     </div>
@@ -14,6 +19,7 @@ import { Option } from "../types/Option";
 export default defineComponent({
   name: "SelectOption",
   props: { options: Array as PropType<Array<Option>> },
+  emits: ["option-clicked"],
 });
 </script>
 

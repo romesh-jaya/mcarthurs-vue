@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <div class="category-title">Select Category</div>
-    <SelectOption :options="categories" class="select-categories" />
+    <SelectOption
+      :options="categories"
+      class="select-categories"
+      @option-clicked="onCategoryClicked"
+    />
     <div class="navbar-bottom">
       <NavButton @on-click="onBackClicked">BACK</NavButton>
     </div>
@@ -25,6 +29,9 @@ export default defineComponent({
   methods: {
     onBackClicked() {
       this.$router.push("/");
+    },
+    onCategoryClicked(categoryId: string) {
+      this.$router.push("/select-item/" + categoryId);
     },
   },
 });
