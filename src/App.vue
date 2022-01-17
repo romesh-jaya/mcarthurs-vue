@@ -53,4 +53,16 @@ p {
   display: flex;
   flex-direction: column;
 }
+
+/* Common styles for components */
+.category-title {
+  margin-block: 2rem;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.navbar-bottom {
+  padding: 2rem;
+  text-align: left;
+}
 </style>

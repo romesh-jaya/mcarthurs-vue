@@ -1,7 +1,7 @@
 <template>
   <div class="landing-container">
     <img src="../assets/fastfood.webp" class="hero" />
-    <div class="title">McArthur's Colombo</div>
+    <div class="category-title">McArthur's Colombo</div>
     <Button class="button-start-order" @on-click="onStartOrderClicked"
       >Start Order</Button
     >
@@ -30,12 +30,6 @@ export default defineComponent({
 
 .landing-container {
   height: 100%;
-}
-
-.title {
-  margin-block-start: 3rem;
-  font-size: 3rem;
-  font-weight: 900;
 }
 
 .hero {

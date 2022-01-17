@@ -67,7 +67,8 @@
       "id": "kids-meal",
       "value": "Kids Meal",
       "categoryId": "kids-meals",
-      "thumbnailURL": "/images/kids.jpg"
+      "thumbnailURL": "/images/kids.jpg",
+      "description": "Enjoyable meal for your child"
     },
     {
       "id": "rice-biriyani",

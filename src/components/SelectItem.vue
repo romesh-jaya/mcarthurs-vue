@@ -63,18 +63,7 @@ export default defineComponent({
   flex-direction: column;
 }
 
-.category-title {
-  margin-block: 2rem;
-  font-size: 2rem;
-  font-weight: 900;
-}
-
 .select-categories {
   flex: 1 0px;
-}
-
-.navbar-bottom {
-  padding: 3rem;
-  text-align: left;
 }
 </style>
