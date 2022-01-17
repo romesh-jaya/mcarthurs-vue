@@ -9,9 +9,19 @@
         <img :src="item.thumbnailURL" class="item-image" />
       </div>
       <div class="description">{{ item.description }}</div>
+      <div class="quantity">
+        <Button class="button-change-quantity" @on-click="onReducedQuantity"
+          >-</Button
+        >
+        Quantity: {{ quantity }}
+        <Button class="button-change-quantity" @on-click="quantity++">+</Button>
+      </div>
     </div>
     <div class="navbar-bottom">
       <NavButton @on-click="onBackClicked">BACK</NavButton>
+      <NavButton @on-click="onBackClicked" :disabled="quantity === 0"
+        >ADD TO ORDER</NavButton
+      >
     </div>
   </div>
 </template>
@@ -21,12 +31,15 @@ import { defineComponent } from "vue";
 import SelectOption from "./SelectOption.vue";
 import itemData from "../sampleData/items.json";
 import NavButton from "../common/NavButton.vue";
+import Button from "../common/Button.vue";
 
 export default defineComponent({
   name: "Item",
-  components: { SelectOption, NavButton },
+  components: { SelectOption, NavButton, Button },
   data() {
-    return {};
+    return {
+      quantity: 0,
+    };
   },
   methods: {
     onBackClicked() {
@@ -35,6 +48,11 @@ export default defineComponent({
         return;
       }
       this.$router.push("/select-category");
+    },
+    onReducedQuantity() {
+      if (this.quantity > 0) {
+        this.quantity--;
+      }
     },
   },
   computed: {
@@ -53,6 +71,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/globals.scss";
 .container {
   height: 100%;
   display: flex;
@@ -66,12 +85,13 @@ export default defineComponent({
 .content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   flex: 1 0px;
 }
 
 .image-div {
-  margin-block: 3rem;
-  height: 25rem;
+  margin-block-end: 3rem;
+  height: 20rem;
 }
 
 .item-image {
@@ -79,10 +99,27 @@ export default defineComponent({
   width: 80%;
   object-fit: cover;
   border-radius: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .description {
   font-size: 1.5rem;
   font-weight: normal;
+}
+
+.quantity {
+  margin-block: 2rem;
+  font-size: 1.75rem;
+  font-weight: normal;
+}
+
+.button-change-quantity {
+  font-size: 2.5rem;
+  margin-inline: 2rem;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 1rem;
+  background-color: $text-color;
+  color: white;
 }
 </style>

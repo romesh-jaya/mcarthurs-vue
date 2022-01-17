@@ -63,6 +63,7 @@ p {
 
 .navbar-bottom {
   padding: 2rem;
-  text-align: left;
+  display: flex;
+  justify-content: space-between;
 }
 </style>

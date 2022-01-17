@@ -1,5 +1,5 @@
 <template>
-  <Button class="nav-button" @on-click="$emit('on-click')">
+  <Button class="nav-button" @on-click="$emit('on-click')" :disabled="disabled">
     <slot></slot>
   </Button>
 </template>
@@ -10,6 +10,7 @@ import Button from "./Button.vue";
 export default defineComponent({
   name: "NavButton",
   components: { Button },
+  props: { disabled: Boolean },
   emits: ["on-click"],
 });
 </script>

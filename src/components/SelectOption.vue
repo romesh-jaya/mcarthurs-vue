@@ -47,6 +47,7 @@ export default defineComponent({
   position: relative;
   color: white;
   overflow: hidden;
+  border-radius: 3px;
 }
 
 .card:active {
