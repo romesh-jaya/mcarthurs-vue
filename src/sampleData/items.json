@@ -5,84 +5,96 @@
       "value": "Double Layer Burger",
       "categoryId": "burgers",
       "thumbnailURL": "/images/burger.jpg",
-      "description": "Juicy 2 layers of meat in a big bun"
+      "description": "Juicy 2 layers of meat in a big bun",
+      "price": 299
     },
     {
       "id": "burger-triple-layer",
       "value": "Triple Burger",
       "categoryId": "burgers",
       "thumbnailURL": "/images/burger.jpg",
-      "description": "Juicy 3 layers of meat in a big bun"
+      "description": "Juicy 3 layers of meat in a big bun",
+      "price": 399
     },
     {
       "id": "fries-small",
       "value": "Fries Small",
       "categoryId": "fries",
       "thumbnailURL": "/images/fries.webp",
-      "description": "Fries to make you go hopping"
+      "description": "Fries to make you go hopping",
+      "price": 199
     },
     {
       "id": "fries-large",
       "value": "Fries Large",
       "categoryId": "fries",
       "thumbnailURL": "/images/fries.webp",
-      "description": "Fries to make you go hopping"
+      "description": "Fries to make you go hopping",
+      "price": 299
     },
     {
       "id": "drink-orange",
       "value": "Orange Juice",
       "categoryId": "drinks",
       "thumbnailURL": "/images/drink.jpg",
-      "description": "Juice bursting with Oranges"
+      "description": "Juice bursting with Oranges",
+      "price": 99
     },
     {
       "id": "drink-mango",
       "value": "Mango Juice",
       "categoryId": "drinks",
       "thumbnailURL": "/images/drink.jpg",
-      "description": "Juice bursting with Mango"
+      "description": "Juice bursting with Mango",
+      "price": 99
     },
     {
       "id": "dessert-mousse",
       "value": "Chocolate Mousse",
       "categoryId": "desserts",
       "thumbnailURL": "/images/dessert.jpg",
-      "description": "Mousse oozing with chocolate"
+      "description": "Mousse oozing with chocolate",
+      "price": 99
     },
     {
       "id": "dessert-brownie",
       "value": "Brownie",
       "categoryId": "desserts",
       "thumbnailURL": "/images/dessert.jpg",
-      "description": "Best in the world"
+      "description": "Best in the world",
+      "price": 99
     },
     {
       "id": "appetizer-chicken-wings",
       "value": "Chicken Wings",
       "categoryId": "appetizers",
       "thumbnailURL": "/images/appetizer.jpg",
-      "description": "Best way to set the mood"
+      "description": "Best way to set the mood",
+      "price": 99
     },
     {
       "id": "kids-meal",
       "value": "Kids Meal",
       "categoryId": "kids-meals",
       "thumbnailURL": "/images/kids.jpg",
-      "description": "Enjoyable meal for your child"
+      "description": "Enjoyable meal for your child",
+      "price": 199
     },
     {
       "id": "rice-biriyani",
       "value": "Biriyani",
       "categoryId": "rice",
       "thumbnailURL": "/images/biriyani.jpg",
-      "description": "For the true Asian tastebuds"
+      "description": "For the true Asian tastebuds",
+      "price": 199
     },
     {
       "id": "promotion-combo-offer",
       "value": "Combo Offer",
       "categoryId": "promotions",
       "thumbnailURL": "/images/promotions.png",
-      "description": "50% off for the combo"
+      "description": "50% off for the combo",
+      "price": 299
     }
   ]
 }
