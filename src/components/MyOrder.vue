@@ -25,35 +25,10 @@ import NavButton from "../common/NavButton.vue";
 export default defineComponent({
   name: "MyOrder",
   components: { SelectOption, NavButton },
-  data() {
-    return {
-      orderItems: [
-        {
-          itemId: "burger-double-layer",
-          quantity: 2,
-          itemName: "Double Layer Burger",
-          total: 299,
-        },
-        {
-          itemId: "fries-small",
-          quantity: 2,
-          itemName: "Small Fries",
-          total: 299,
-        },
-        {
-          itemId: "drink-orange",
-          quantity: 1,
-          itemName: "Orange Juice",
-          total: 299,
-        },
-        {
-          itemId: "drink-mango",
-          quantity: 1,
-          itemName: "Mango Juice",
-          total: 299,
-        },
-      ],
-    };
+  computed: {
+    orderItems() {
+      return this.$store.state.orderItems;
+    },
   },
   methods: {
     onBackClicked() {

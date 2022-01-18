@@ -6,6 +6,7 @@ import SelectItem from "./components/SelectItem.vue";
 import Item from "./components/Item.vue";
 import MyOrder from "./components/MyOrder.vue";
 import { createRouter, createWebHistory } from "vue-router";
+import { store } from "./store/store";
 
 const routes = [
   { path: "/", component: Landing },
@@ -22,5 +23,6 @@ const router = createRouter({
 
 const app = createApp(App);
 app.use(router);
+app.use(store);
 
 app.mount("#app");
