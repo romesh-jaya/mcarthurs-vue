@@ -4,7 +4,7 @@
     <div class="order-items" v-if="orderItems.length">
       <div class="order-item header">
         <div>Item</div>
-        <div>Price</div>
+        <div>Price (Rs)</div>
       </div>
       <div v-for="item in orderItems" :key="item.itemId" class="order-item">
         <div>{{ item.itemName }} - {{ item.quantity }}Nos</div>
