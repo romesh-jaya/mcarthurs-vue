@@ -30,4 +30,9 @@ export const store = createStore({
       },
     ],
   },
+  mutations: {
+    addOrderItem: (state, payload) => {
+      state.orderItems.push(payload);
+    },
+  },
 });

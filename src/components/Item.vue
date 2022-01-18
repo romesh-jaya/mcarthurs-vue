@@ -19,7 +19,7 @@
     </div>
     <div class="navbar-bottom">
       <NavButton @on-click="onBackClicked">BACK</NavButton>
-      <NavButton @on-click="onBackClicked" :disabled="quantity === 0"
+      <NavButton @on-click="onAddToOrder" :disabled="quantity === 0"
         >ADD TO ORDER</NavButton
       >
     </div>
@@ -52,6 +52,17 @@ export default defineComponent({
     onReducedQuantity() {
       if (this.quantity > 0) {
         this.quantity--;
+      }
+    },
+    onAddToOrder() {
+      if (this.item) {
+        this.$store.commit("addOrderItem", {
+          itemId: this.item.id,
+          quantity: this.quantity,
+          itemName: this.item.value,
+          total: this.item.price * this.quantity,
+        });
+        this.$router.push("/my-order");
       }
     },
   },
