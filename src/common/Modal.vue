@@ -24,8 +24,8 @@
         </section>
 
         <footer class="modal-footer">
-          <Button class="btn-yes" @on-click="close(true)">Yes</Button>
-          <Button class="btn-no" @on-click="close">No</Button>
+          <NavButton class="btn-yes" @on-click="close(true)">Yes</NavButton>
+          <NavButton class="btn-no" @on-click="close">No</NavButton>
         </footer>
       </div>
     </div>
@@ -34,12 +34,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Button from "../common/Button.vue";
+import NavButton from "../common/NavButton.vue";
 
 export default defineComponent({
   name: "Modal",
   emits: ["modal-close"],
-  components: { Button },
+  components: { NavButton },
   methods: {
     close(retVal: boolean) {
       this.$emit("modal-close", { retVal });
@@ -73,11 +73,13 @@ export default defineComponent({
 
 .modal-header,
 .modal-footer {
-  padding: 15px;
+  padding: 2rem;
   display: flex;
 }
 
 .modal-header {
+  font-size: 2rem;
+  font-weight: 900;
   position: relative;
   border-bottom: 1px solid #eeeeee;
   justify-content: space-between;
@@ -91,7 +93,8 @@ export default defineComponent({
 
 .modal-body {
   position: relative;
-  padding: 20px 10px;
+  font-size: 1.75rem;
+  padding: 2rem;
 }
 
 .btn-close {
@@ -110,7 +113,7 @@ export default defineComponent({
 .btn-no {
   margin-inline-start: 0.5rem;
   color: white;
-  background: $green;
+  background: $nav-button-color;
 }
 
 .modal-fade-enter,

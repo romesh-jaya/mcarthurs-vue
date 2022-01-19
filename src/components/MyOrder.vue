@@ -27,6 +27,14 @@
         orderItems.length > 0 ? "ADD ANOTHER ITEM" : "ADD ITEM"
       }}</NavButton>
     </div>
+    <Modal v-if="showCancelOrderModal" @modal-close="onModalClosed">
+      <template v-slot:header>
+        <p>Cancel order</p>
+      </template>
+      <template v-slot:body>
+        <p>Are you sure you wish to cancel this order?</p>
+      </template>
+    </Modal>
   </div>
 </template>
 
@@ -34,10 +42,16 @@
 import { defineComponent } from "vue";
 import SelectOption from "./SelectOption.vue";
 import NavButton from "../common/NavButton.vue";
+import Modal from "../common/Modal.vue";
 
 export default defineComponent({
   name: "MyOrder",
-  components: { SelectOption, NavButton },
+  components: { SelectOption, NavButton, Modal },
+  data() {
+    return {
+      showCancelOrderModal: false,
+    };
+  },
   computed: {
     orderItems() {
       return this.$store.state.orderItems;
@@ -45,14 +59,21 @@ export default defineComponent({
   },
   methods: {
     onCancelOrderClicked() {
-      this.$store.commit("clearAllItems");
-      this.$router.push("/");
+      this.showCancelOrderModal = true;
     },
     onAddAnotherClicked() {
       this.$router.push("/select-category");
     },
     onEditItemClicked(itemId: string) {
       this.$router.push("/items/" + itemId);
+    },
+    onModalClosed(value: { retVal: boolean }) {
+      const { retVal } = value;
+      this.showCancelOrderModal = false;
+      if (retVal) {
+        this.$store.commit("clearAllItems");
+        this.$router.push("/");
+      }
     },
   },
 });
