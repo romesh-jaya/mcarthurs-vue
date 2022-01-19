@@ -9,11 +9,13 @@
       <div v-for="item in orderItems" :key="item.itemId" class="order-item">
         <div>
           {{ item.itemName }} - {{ item.quantity }}Nos
-          <font-awesome-icon
-            icon="edit"
-            class="edit-icon"
+          <span
+            class="edit-icon-container"
             @click="onEditItemClicked(item.itemId)"
-          />
+          >
+            <font-awesome-icon class="edit-icon" :icon="['fas', 'edit']" />
+            <font-awesome-icon class="edit-icon" :icon="['far', 'edit']" />
+          </span>
         </div>
         <div>{{ item.total.toFixed(2) }}</div>
       </div>
@@ -80,7 +82,20 @@ export default defineComponent({
   font-weight: 900;
 }
 
-.edit-icon {
+.edit-icon-container {
   margin-inline-start: 1rem;
+}
+
+.edit-icon:first-child {
+  display: none;
+}
+
+.edit-icon-container:active {
+  .edit-icon:first-child {
+    display: inherit;
+  }
+  .edit-icon:nth-child(2) {
+    display: none;
+  }
 }
 </style>
