@@ -28,7 +28,7 @@ export default defineComponent({
   },
   methods: {
     onBackClicked() {
-      this.$router.push("/");
+      this.$router.push("/my-order");
     },
     onCategoryClicked(categoryId: string) {
       this.$router.push("/select-item/" + categoryId);

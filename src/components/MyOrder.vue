@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="category-title">My Order</div>
-    <div class="order-items" v-if="orderItems.length">
+    <div class="order-items" v-if="orderItems.length > 0">
       <div class="order-item header">
         <div>Item</div>
         <div>Price (Rs)</div>
@@ -11,9 +11,12 @@
         <div>{{ item.total.toFixed(2) }}</div>
       </div>
     </div>
+    <div class="order-items" v-else>No items are currently in your order</div>
     <div class="navbar-bottom">
-      <NavButton @on-click="onBackClicked">BACK</NavButton>
-      <NavButton @on-click="onAddAnotherClicked">ADD ANOTHER ITEM</NavButton>
+      <NavButton @on-click="onCancelOrderClicked">CANCEL ORDER</NavButton>
+      <NavButton @on-click="onAddAnotherClicked">{{
+        orderItems.length > 0 ? "ADD ANOTHER ITEM" : "ADD ITEM"
+      }}</NavButton>
     </div>
   </div>
 </template>
@@ -32,7 +35,8 @@ export default defineComponent({
     },
   },
   methods: {
-    onBackClicked() {
+    onCancelOrderClicked() {
+      this.$store.commit("clearAllItems");
       this.$router.push("/");
     },
     onAddAnotherClicked() {

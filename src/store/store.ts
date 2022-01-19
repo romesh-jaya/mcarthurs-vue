@@ -1,44 +1,37 @@
 import { createStore } from "vuex";
+import { OrderItem } from "../types/OrderItem";
 
-export const store = createStore({
+interface State {
+  orderItems: OrderItem[];
+}
+
+export const store = createStore<State>({
   strict: true,
   state: {
-    orderItems: [
-      {
-        itemId: "burger-double-layer",
-        quantity: 2,
-        itemName: "Double Layer Burger",
-        total: 299,
-      },
-      {
-        itemId: "fries-small",
-        quantity: 2,
-        itemName: "Small Fries",
-        total: 299,
-      },
-      {
-        itemId: "drink-orange",
-        quantity: 1,
-        itemName: "Orange Juice",
-        total: 299,
-      },
-      {
-        itemId: "drink-mango",
-        quantity: 1,
-        itemName: "Mango Juice",
-        total: 299,
-      },
-    ],
+    orderItems: [],
   },
   getters: {
     getOrderItemQuantity: (state) => (itemId: string) => {
-      console.log("itemId", itemId);
-      return state.orderItems.find((item) => item.itemId === itemId)?.quantity;
+      return (
+        state.orderItems.find((item) => item.itemId === itemId)?.quantity ?? 0
+      );
     },
   },
   mutations: {
-    addOrderItem: (state, payload) => {
+    addOrderItem: (state, payload: OrderItem) => {
       state.orderItems.push(payload);
+    },
+    saveOrderItem: (state, payload: OrderItem) => {
+      const orderItem = state.orderItems.find(
+        (item) => item.itemId === payload.itemId
+      );
+      if (orderItem) {
+        orderItem.quantity = payload.quantity;
+        orderItem.total = payload.total;
+      }
+    },
+    clearAllItems: (state) => {
+      state.orderItems = [];
     },
   },
 });

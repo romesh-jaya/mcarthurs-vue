@@ -19,8 +19,17 @@
     </div>
     <div class="navbar-bottom">
       <NavButton @on-click="onBackClicked">BACK</NavButton>
-      <NavButton @on-click="onAddToOrder" :disabled="quantity === 0"
+      <NavButton
+        @on-click="onAddSaveToOrder"
+        :disabled="quantity === 0"
+        v-if="initialQuantity === 0"
         >ADD TO ORDER</NavButton
+      >
+      <NavButton
+        @on-click="onAddSaveToOrder"
+        :disabled="quantity === initialQuantity"
+        v-else
+        >SAVE CHANGES</NavButton
       >
     </div>
   </div>
@@ -39,6 +48,7 @@ export default defineComponent({
   data() {
     return {
       quantity: 0,
+      initialQuantity: 0,
     };
   },
   methods: {
@@ -54,14 +64,20 @@ export default defineComponent({
         this.quantity--;
       }
     },
-    onAddToOrder() {
+    onAddSaveToOrder() {
       if (this.item) {
-        this.$store.commit("addOrderItem", {
+        const itemData = {
           itemId: this.item.id,
           quantity: this.quantity,
-          itemName: this.item.value,
           total: this.item.price * this.quantity,
-        });
+          itemName: this.item.value,
+        };
+
+        if (this.initialQuantity === 0) {
+          this.$store.commit("addOrderItem", itemData);
+        } else {
+          this.$store.commit("saveOrderItem", itemData);
+        }
         this.$router.push("/my-order");
       }
     },
@@ -82,6 +98,7 @@ export default defineComponent({
     this.quantity = this.itemId
       ? this.$store.getters.getOrderItemQuantity(this.itemId)
       : 0;
+    this.initialQuantity = this.quantity;
   },
 });
 </script>
