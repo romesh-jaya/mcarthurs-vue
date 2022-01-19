@@ -7,7 +7,14 @@
         <div>Price (Rs)</div>
       </div>
       <div v-for="item in orderItems" :key="item.itemId" class="order-item">
-        <div>{{ item.itemName }} - {{ item.quantity }}Nos</div>
+        <div>
+          {{ item.itemName }} - {{ item.quantity }}Nos
+          <font-awesome-icon
+            icon="edit"
+            class="edit-icon"
+            @click="onEditItemClicked(item.itemId)"
+          />
+        </div>
         <div>{{ item.total.toFixed(2) }}</div>
       </div>
     </div>
@@ -42,6 +49,9 @@ export default defineComponent({
     onAddAnotherClicked() {
       this.$router.push("/select-category");
     },
+    onEditItemClicked(itemId: string) {
+      this.$router.push("/items/" + itemId);
+    },
   },
 });
 </script>
@@ -68,5 +78,9 @@ export default defineComponent({
 
 .header {
   font-weight: 900;
+}
+
+.edit-icon {
+  margin-inline-start: 1rem;
 }
 </style>

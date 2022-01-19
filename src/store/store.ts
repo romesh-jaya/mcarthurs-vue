@@ -22,12 +22,19 @@ export const store = createStore<State>({
       state.orderItems.push(payload);
     },
     saveOrderItem: (state, payload: OrderItem) => {
-      const orderItem = state.orderItems.find(
-        (item) => item.itemId === payload.itemId
-      );
-      if (orderItem) {
-        orderItem.quantity = payload.quantity;
-        orderItem.total = payload.total;
+      if (payload.quantity > 0) {
+        const orderItem = state.orderItems.find(
+          (item) => item.itemId === payload.itemId
+        );
+        if (orderItem) {
+          orderItem.quantity = payload.quantity;
+          orderItem.total = payload.total;
+        }
+      } else {
+        const newArray = state.orderItems.filter(
+          (item) => item.itemId !== payload.itemId
+        );
+        state.orderItems = newArray;
       }
     },
     clearAllItems: (state) => {

@@ -7,6 +7,7 @@ import Item from "./components/Item.vue";
 import MyOrder from "./components/MyOrder.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { store } from "./store/store";
+import FontAwesomeIcon from "./fontawesome-icons";
 
 const routes = [
   { path: "/", component: Landing },
@@ -24,5 +25,6 @@ const router = createRouter({
 const app = createApp(App);
 app.use(router);
 app.use(store);
+app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.mount("#app");
