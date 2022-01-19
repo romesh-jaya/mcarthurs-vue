@@ -72,11 +72,16 @@ export default defineComponent({
         (items) => items.id === this.$route.params.itemId
       );
     },
-    itemId() {
+    itemId(): string | undefined {
       return itemData.items.find(
         (items) => items.id === this.$route.params.itemId
       )?.id;
     },
+  },
+  mounted() {
+    this.quantity = this.itemId
+      ? this.$store.getters.getOrderItemQuantity(this.itemId)
+      : 0;
   },
 });
 </script>

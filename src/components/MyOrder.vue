@@ -13,6 +13,7 @@
     </div>
     <div class="navbar-bottom">
       <NavButton @on-click="onBackClicked">BACK</NavButton>
+      <NavButton @on-click="onAddAnotherClicked">ADD ANOTHER ITEM</NavButton>
     </div>
   </div>
 </template>
@@ -33,6 +34,9 @@ export default defineComponent({
   methods: {
     onBackClicked() {
       this.$router.push("/");
+    },
+    onAddAnotherClicked() {
+      this.$router.push("/select-category");
     },
   },
 });

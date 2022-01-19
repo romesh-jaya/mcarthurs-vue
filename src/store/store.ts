@@ -30,6 +30,12 @@ export const store = createStore({
       },
     ],
   },
+  getters: {
+    getOrderItemQuantity: (state) => (itemId: string) => {
+      console.log("itemId", itemId);
+      return state.orderItems.find((item) => item.itemId === itemId)?.quantity;
+    },
+  },
   mutations: {
     addOrderItem: (state, payload) => {
       state.orderItems.push(payload);
