@@ -3,7 +3,7 @@
     {
       "id": "burgers",
       "value": "Burgers",
-      "thumbnailURL": "./images/burger.jpg"
+      "thumbnailURL": "./images/burger.webp"
     },
     { "id": "fries", "value": "Fries", "thumbnailURL": "./images/fries.webp" },
     {
@@ -19,14 +19,14 @@
     {
       "id": "appetizers",
       "value": "Appetizers",
-      "thumbnailURL": "./images/appetizer.jpg"
+      "thumbnailURL": "./images/appetizer.webp"
     },
     {
       "id": "kids-meals",
       "value": "Kids Meals",
       "thumbnailURL": "./images/kids.jpg"
     },
-    { "id": "rice", "value": "Rice", "thumbnailURL": "./images/biriyani.jpg" },
+    { "id": "rice", "value": "Rice", "thumbnailURL": "./images/biriyani.webp" },
     {
       "id": "promotions",
       "value": "Promotions",

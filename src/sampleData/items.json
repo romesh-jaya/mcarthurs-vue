@@ -4,7 +4,7 @@
       "id": "burger-double-layer",
       "value": "Double Layer Burger",
       "categoryId": "burgers",
-      "thumbnailURL": "/images/burger.jpg",
+      "thumbnailURL": "/images/burger.webp",
       "description": "Juicy 2 layers of meat in a big bun",
       "price": 299
     },
@@ -12,7 +12,7 @@
       "id": "burger-triple-layer",
       "value": "Triple Burger",
       "categoryId": "burgers",
-      "thumbnailURL": "/images/burger.jpg",
+      "thumbnailURL": "/images/triple.jpg",
       "description": "Juicy 3 layers of meat in a big bun",
       "price": 399
     },
@@ -44,7 +44,7 @@
       "id": "drink-mango",
       "value": "Mango Juice",
       "categoryId": "drinks",
-      "thumbnailURL": "/images/drink.jpg",
+      "thumbnailURL": "/images/mango.webp",
       "description": "Juice bursting with Mango",
       "price": 99
     },
@@ -60,7 +60,7 @@
       "id": "dessert-brownie",
       "value": "Brownie",
       "categoryId": "desserts",
-      "thumbnailURL": "/images/dessert.jpg",
+      "thumbnailURL": "/images/brownie.webp",
       "description": "Best in the world",
       "price": 99
     },
@@ -68,7 +68,7 @@
       "id": "appetizer-chicken-wings",
       "value": "Chicken Wings",
       "categoryId": "appetizers",
-      "thumbnailURL": "/images/appetizer.jpg",
+      "thumbnailURL": "/images/appetizer.webp",
       "description": "Best way to set the mood",
       "price": 99
     },
@@ -84,7 +84,7 @@
       "id": "rice-biriyani",
       "value": "Biriyani",
       "categoryId": "rice",
-      "thumbnailURL": "/images/biriyani.jpg",
+      "thumbnailURL": "/images/biriyani.webp",
       "description": "For the true Asian tastebuds",
       "price": 199
     },
@@ -92,7 +92,7 @@
       "id": "promotion-combo-offer",
       "value": "Combo Offer",
       "categoryId": "promotions",
-      "thumbnailURL": "/images/promotions.png",
+      "thumbnailURL": "/images/combo.jpg",
       "description": "50% off for the combo",
       "price": 299
     }
