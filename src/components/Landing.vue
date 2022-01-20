@@ -2,20 +2,20 @@
   <div class="landing-container">
     <img src="../assets/fastfood.webp" class="hero" />
     <div class="category-title">McArthur's Colombo</div>
-    <Button class="button-start-order" @on-click="onStartOrderClicked"
-      >Start Order</Button
+    <PrimaryButton class="button-start-order" @on-click="onStartOrderClicked"
+      >Start Order</PrimaryButton
     >
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Button from "../common/Button.vue";
+import PrimaryButton from "../common/PrimaryButton.vue";
 
 export default defineComponent({
   name: "Landing",
   components: {
-    Button,
+    PrimaryButton,
   },
   methods: {
     onStartOrderClicked() {
@@ -45,11 +45,5 @@ export default defineComponent({
 
 .button-start-order {
   margin-block-start: 3rem;
-  font-size: 1.75rem;
-  padding-inline: 3rem;
-  padding-block: 1rem;
-  border-radius: 1rem;
-  background-color: $text-color;
-  color: white;
 }
 </style>
