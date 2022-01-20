@@ -4,13 +4,13 @@
       "id": "burger-double-layer",
       "value": "Double Layer Burger",
       "categoryId": "burgers",
-      "thumbnailURL": "/images/burger.webp",
+      "thumbnailURL": "/images/burger.jpg",
       "description": "Juicy 2 layers of meat in a big bun",
       "price": 299
     },
     {
       "id": "burger-triple-layer",
-      "value": "Triple Burger",
+      "value": "Triple Layer Burger",
       "categoryId": "burgers",
       "thumbnailURL": "/images/triple.jpg",
       "description": "Juicy 3 layers of meat in a big bun",

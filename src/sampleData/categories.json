@@ -3,7 +3,7 @@
     {
       "id": "burgers",
       "value": "Burgers",
-      "thumbnailURL": "./images/burger.webp"
+      "thumbnailURL": "./images/burger.jpg"
     },
     { "id": "fries", "value": "Fries", "thumbnailURL": "./images/fries.webp" },
     {
