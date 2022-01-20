@@ -24,8 +24,15 @@
         </section>
 
         <footer class="modal-footer">
-          <NavButton class="btn-yes" @on-click="close(true)">Yes</NavButton>
-          <NavButton class="btn-no" @on-click="close">No</NavButton>
+          <NavButton
+            v-if="buttonsToShow == 'YESNO'"
+            class="btn-yes"
+            @on-click="close(true)"
+            >Yes</NavButton
+          >
+          <NavButton class="btn-no" @on-click="close">{{
+            buttonsToShow === "YESNO" ? "No" : "OK"
+          }}</NavButton>
         </footer>
       </div>
     </div>
@@ -39,6 +46,7 @@ import NavButton from "../common/NavButton.vue";
 export default defineComponent({
   name: "Modal",
   emits: ["modal-close"],
+  props: { buttonsToShow: String },
   components: { NavButton },
   methods: {
     close(retVal: boolean) {

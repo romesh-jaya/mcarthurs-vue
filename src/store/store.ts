@@ -6,7 +6,7 @@ interface State {
 }
 
 export const store = createStore<State>({
-  strict: true,
+  strict: true, // whenever Vuex state is mutated outside of mutation handlers, an error will be thrown.
   state: {
     orderItems: [],
   },

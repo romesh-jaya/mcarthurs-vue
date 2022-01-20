@@ -23,16 +23,48 @@
     <div class="order-items" v-else>No items are currently in your order</div>
     <div class="navbar-bottom">
       <NavButton @on-click="onCancelOrderClicked">CANCEL ORDER</NavButton>
+      <NavButton
+        @on-click="onSubmitOrderClicked"
+        :disabled="orderItems.length === 0"
+        >SUBMIT ORDER</NavButton
+      >
       <NavButton @on-click="onAddAnotherClicked">{{
         orderItems.length > 0 ? "ADD ANOTHER ITEM" : "ADD ITEM"
       }}</NavButton>
     </div>
-    <Modal v-if="showCancelOrderModal" @modal-close="onModalClosed">
+    <Modal
+      v-if="showCancelOrderModal"
+      @modal-close="onModalClosedCancel"
+      buttonsToShow="YESNO"
+    >
       <template v-slot:header>
         <p>Cancel order</p>
       </template>
       <template v-slot:body>
         <p>Are you sure you wish to cancel this order?</p>
+      </template>
+    </Modal>
+    <Modal
+      v-if="showSubmitOrderModal"
+      @modal-close="onModalClosedSubmit"
+      buttonsToShow="YESNO"
+    >
+      <template v-slot:header>
+        <p>Submit order</p>
+      </template>
+      <template v-slot:body>
+        <p>Are you sure you wish to submit this order to the kitchen?</p>
+      </template>
+    </Modal>
+    <Modal v-if="showSubmittedOrderModal" @modal-close="onModalClosedSubmitted">
+      <template v-slot:header>
+        <p>Order Submitted</p>
+      </template>
+      <template v-slot:body>
+        <p>
+          Your order has been submitted! Order No:
+          {{ Math.floor(Math.random() * 100) }}
+        </p>
       </template>
     </Modal>
   </div>
@@ -50,6 +82,8 @@ export default defineComponent({
   data() {
     return {
       showCancelOrderModal: false,
+      showSubmitOrderModal: false,
+      showSubmittedOrderModal: false,
     };
   },
   computed: {
@@ -59,7 +93,15 @@ export default defineComponent({
   },
   methods: {
     onCancelOrderClicked() {
+      if (this.orderItems.length === 0) {
+        this.$store.commit("clearAllItems");
+        this.$router.push("/");
+        return;
+      }
       this.showCancelOrderModal = true;
+    },
+    onSubmitOrderClicked() {
+      this.showSubmitOrderModal = true;
     },
     onAddAnotherClicked() {
       this.$router.push("/select-category");
@@ -67,13 +109,25 @@ export default defineComponent({
     onEditItemClicked(itemId: string) {
       this.$router.push("/items/" + itemId);
     },
-    onModalClosed(value: { retVal: boolean }) {
+    onModalClosedCancel(value: { retVal: boolean }) {
       const { retVal } = value;
       this.showCancelOrderModal = false;
       if (retVal) {
         this.$store.commit("clearAllItems");
         this.$router.push("/");
       }
+    },
+    onModalClosedSubmit(value: { retVal: boolean }) {
+      const { retVal } = value;
+      this.showSubmitOrderModal = false;
+      if (retVal) {
+        this.showSubmittedOrderModal = true;
+      }
+    },
+    onModalClosedSubmitted() {
+      this.showSubmittedOrderModal = false;
+      this.$store.commit("clearAllItems");
+      this.$router.push("/");
     },
   },
 });
