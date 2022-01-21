@@ -48,7 +48,7 @@ export default defineComponent({
   data() {
     return {
       quantity: 0,
-      initialQuantity: 0,
+      initialQuantity: 0, // quantity retrieved from store when page loads
     };
   },
   methods: {

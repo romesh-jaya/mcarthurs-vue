@@ -35,7 +35,7 @@
     <Modal
       v-if="showCancelOrderModal"
       @modal-close="onModalClosedCancel"
-      buttonsToShow="YESNO"
+      :buttonsToShow="buttonTypes.YesNo"
     >
       <template v-slot:header>
         <p>Cancel order</p>
@@ -47,7 +47,7 @@
     <Modal
       v-if="showSubmitOrderModal"
       @modal-close="onModalClosedSubmit"
-      buttonsToShow="YESNO"
+      :buttonsToShow="buttonTypes.YesNo"
     >
       <template v-slot:header>
         <p>Submit order</p>
@@ -75,6 +75,7 @@ import { defineComponent } from "vue";
 import SelectOption from "./SelectOption.vue";
 import NavButton from "../common/NavButton.vue";
 import Modal from "../common/Modal.vue";
+import { ButtonTypes } from "../enums/ButtonTypes";
 
 export default defineComponent({
   name: "MyOrder",
@@ -90,6 +91,7 @@ export default defineComponent({
     orderItems() {
       return this.$store.state.orderItems;
     },
+    buttonTypes: () => ButtonTypes,
   },
   methods: {
     onCancelOrderClicked() {

@@ -8,7 +8,7 @@
         aria-describedby="modalDescription"
       >
         <header class="modal-header" id="modalTitle">
-          <slot name="header"> This is the default tile! </slot>
+          <slot name="header"> This is the default title! </slot>
           <button
             type="button"
             class="btn-close"
@@ -25,13 +25,13 @@
 
         <footer class="modal-footer">
           <NavButton
-            v-if="buttonsToShow == 'YESNO'"
+            v-if="buttonsToShow == buttonTypes.YesNo"
             class="btn-yes"
             @on-click="close(true)"
             >Yes</NavButton
           >
           <NavButton class="btn-no" @on-click="close">{{
-            buttonsToShow === "YESNO" ? "No" : "OK"
+            buttonsToShow === buttonTypes.YesNo ? "No" : "OK"
           }}</NavButton>
         </footer>
       </div>
@@ -42,16 +42,25 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import NavButton from "../common/NavButton.vue";
+import { ButtonTypes } from "../enums/ButtonTypes";
 
 export default defineComponent({
   name: "Modal",
   emits: ["modal-close"],
-  props: { buttonsToShow: String },
+  props: {
+    buttonsToShow: {
+      type: String,
+      default: ButtonTypes.Ok,
+    },
+  },
   components: { NavButton },
   methods: {
     close(retVal: boolean) {
       this.$emit("modal-close", { retVal });
     },
+  },
+  computed: {
+    buttonTypes: () => ButtonTypes,
   },
 });
 </script>

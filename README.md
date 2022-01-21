@@ -9,6 +9,7 @@ Tech stack used:
 - SCSS
 - Fontawesome icons
 - Lazy loading routes
+- Husky
 
 Site is hosted here:
 https://mcarthurs-kiosk.web.app/
