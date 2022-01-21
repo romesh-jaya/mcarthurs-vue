@@ -5,6 +5,7 @@ This application, written in Vue.js is meant to be used in a self-service kiosk 
 Tech stack used:
 
 - Vuex
+- Vite
 - Typescript
 - SCSS
 - Fontawesome icons
