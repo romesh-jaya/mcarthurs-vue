@@ -1,6 +1,6 @@
 # McArthur's Self-service Kiosk App
 
-This application, written in Vue.js is meant to be used in a self-service kiosk at a fast food restaurant. Users can choose which items they like and submit to the kitchen for preperation. Requires a device with minimum display resolution of 1024\*768 in lanscape orientation.
+This application, written in Vue.js is meant to be used in a self-service kiosk at a fast food restaurant. Users can choose which items they like and submit to the kitchen for preperation. Requires a touch-capable device with minimum display resolution of 1024\*768 in lanscape orientation.
 
 Tech stack used:
 
