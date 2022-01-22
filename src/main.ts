@@ -29,6 +29,6 @@ const router = createRouter({
 const app = createApp(App);
 app.use(router);
 app.use(store);
-app.component("font-awesome-icon", FontAwesomeIcon);
+app.component("FontAwesomeIcon", FontAwesomeIcon);
 
 app.mount("#app");

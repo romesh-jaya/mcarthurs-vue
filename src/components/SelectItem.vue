@@ -28,14 +28,6 @@ export default defineComponent({
   data() {
     return {};
   },
-  methods: {
-    onBackClicked() {
-      this.$router.push("/select-category");
-    },
-    onItemClicked(itemId: string) {
-      this.$router.push("/items/" + itemId);
-    },
-  },
   computed: {
     category() {
       return categoryData.categories.find(
@@ -51,6 +43,14 @@ export default defineComponent({
       return itemData.items.filter(
         (item) => item.categoryId === this.$route.params.categoryId
       );
+    },
+  },
+  methods: {
+    onBackClicked() {
+      this.$router.push("/select-category");
+    },
+    onItemClicked(itemId: string) {
+      this.$router.push("/items/" + itemId);
     },
   },
 });

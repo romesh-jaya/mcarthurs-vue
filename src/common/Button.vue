@@ -2,8 +2,8 @@
   <button
     class="button"
     :class="{ disabled: disabled }"
-    @click="$emit('on-click')"
     :disabled="disabled"
+    @click="$emit('on-click')"
   >
     <slot></slot>
   </button>

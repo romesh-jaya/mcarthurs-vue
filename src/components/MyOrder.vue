@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="category-title">My Order</div>
-    <div class="order-items" v-if="orderItems.length > 0">
+    <div v-if="orderItems.length > 0" class="order-items">
       <div class="order-item header">
         <div>Item</div>
         <div>Price (Rs)</div>
@@ -20,12 +20,12 @@
         <div>{{ item.total.toFixed(2) }}</div>
       </div>
     </div>
-    <div class="order-items" v-else>No items are currently in your order</div>
+    <div v-else class="order-items">No items are currently in your order</div>
     <div class="navbar-bottom">
       <NavButton @on-click="onCancelOrderClicked">CANCEL ORDER</NavButton>
       <NavButton
-        @on-click="onSubmitOrderClicked"
         :disabled="orderItems.length === 0"
+        @on-click="onSubmitOrderClicked"
         >SUBMIT ORDER</NavButton
       >
       <NavButton @on-click="onAddAnotherClicked">{{
@@ -34,33 +34,33 @@
     </div>
     <Modal
       v-if="showCancelOrderModal"
+      :buttons-to-show="buttonTypes.YesNo"
       @modal-close="onModalClosedCancel"
-      :buttonsToShow="buttonTypes.YesNo"
     >
-      <template v-slot:header>
+      <template #header>
         <p>Cancel order</p>
       </template>
-      <template v-slot:body>
+      <template #body>
         <p>Are you sure you wish to cancel this order?</p>
       </template>
     </Modal>
     <Modal
       v-if="showSubmitOrderModal"
+      :buttons-to-show="buttonTypes.YesNo"
       @modal-close="onModalClosedSubmit"
-      :buttonsToShow="buttonTypes.YesNo"
     >
-      <template v-slot:header>
+      <template #header>
         <p>Submit order</p>
       </template>
-      <template v-slot:body>
+      <template #body>
         <p>Are you sure you wish to submit this order to the kitchen?</p>
       </template>
     </Modal>
     <Modal v-if="showSubmittedOrderModal" @modal-close="onModalClosedSubmitted">
-      <template v-slot:header>
+      <template #header>
         <p>Order Submitted</p>
       </template>
-      <template v-slot:body>
+      <template #body>
         <p>
           Your order has been submitted! Order No:
           {{ Math.floor(Math.random() * 100) }}
@@ -72,14 +72,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import SelectOption from "./SelectOption.vue";
 import NavButton from "../common/NavButton.vue";
 import Modal from "../common/Modal.vue";
 import { ButtonTypes } from "../enums/ButtonTypes";
 
 export default defineComponent({
   name: "MyOrder",
-  components: { SelectOption, NavButton, Modal },
+  components: { NavButton, Modal },
   data() {
     return {
       showCancelOrderModal: false,

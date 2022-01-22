@@ -20,15 +20,15 @@
     <div class="navbar-bottom">
       <NavButton @on-click="onBackClicked">BACK</NavButton>
       <NavButton
-        @on-click="onAddSaveToOrder"
-        :disabled="quantity === 0"
         v-if="initialQuantity === 0"
+        :disabled="quantity === 0"
+        @on-click="onAddSaveToOrder"
         >ADD TO ORDER</NavButton
       >
       <NavButton
-        @on-click="onAddSaveToOrder"
-        :disabled="quantity === initialQuantity"
         v-else
+        :disabled="quantity === initialQuantity"
+        @on-click="onAddSaveToOrder"
         >SAVE CHANGES</NavButton
       >
     </div>
@@ -37,19 +37,36 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import SelectOption from "./SelectOption.vue";
 import itemData from "../sampleData/items.json";
 import NavButton from "../common/NavButton.vue";
 import Button from "../common/Button.vue";
 
 export default defineComponent({
   name: "Item",
-  components: { SelectOption, NavButton, Button },
+  components: { NavButton, Button },
   data() {
     return {
       quantity: 0,
       initialQuantity: 0, // quantity retrieved from store when page loads
     };
+  },
+  computed: {
+    item() {
+      return itemData.items.find(
+        (items) => items.id === this.$route.params.itemId
+      );
+    },
+    itemId(): string | undefined {
+      return itemData.items.find(
+        (items) => items.id === this.$route.params.itemId
+      )?.id;
+    },
+  },
+  mounted() {
+    this.quantity = this.itemId
+      ? this.$store.getters.getOrderItemQuantity(this.itemId)
+      : 0;
+    this.initialQuantity = this.quantity;
   },
   methods: {
     onBackClicked() {
@@ -81,24 +98,6 @@ export default defineComponent({
         this.$router.push("/my-order");
       }
     },
-  },
-  computed: {
-    item() {
-      return itemData.items.find(
-        (items) => items.id === this.$route.params.itemId
-      );
-    },
-    itemId(): string | undefined {
-      return itemData.items.find(
-        (items) => items.id === this.$route.params.itemId
-      )?.id;
-    },
-  },
-  mounted() {
-    this.quantity = this.itemId
-      ? this.$store.getters.getOrderItemQuantity(this.itemId)
-      : 0;
-    this.initialQuantity = this.quantity;
   },
 });
 </script>

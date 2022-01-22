@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "lint": "",
+    "lint": "eslint --ext .ts,.vue --ignore-path .gitignore --fix src",
     "build": "vite build",
     "serve": "vite preview",
     "prepare": "husky install",
@@ -22,16 +22,18 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^8.3.0",
     "husky": "^7.0.4",
     "node-sass": "^4.14.1",
     "sass": "^1.45.1",
-    "typescript": "~4.1.5"
+    "typescript": "~4.1.5",
+    "vue-tsc": "^0.30.6"
   },
   "browserslist": [
     "> 1%",

@@ -7,19 +7,19 @@
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
       >
-        <header class="modal-header" id="modalTitle">
+        <header id="modalTitle" class="modal-header">
           <slot name="header"> This is the default title! </slot>
           <button
             type="button"
             class="btn-close"
-            @click="close"
             aria-label="Close modal"
+            @click="close(false)"
           >
             x
           </button>
         </header>
 
-        <section class="modal-body" id="modalDescription">
+        <section id="modalDescription" class="modal-body">
           <slot name="body"> This is the default body! </slot>
         </section>
 
@@ -46,21 +46,21 @@ import { ButtonTypes } from "../enums/ButtonTypes";
 
 export default defineComponent({
   name: "Modal",
-  emits: ["modal-close"],
+  components: { NavButton },
   props: {
     buttonsToShow: {
       type: String,
       default: ButtonTypes.Ok,
     },
   },
-  components: { NavButton },
+  emits: ["modal-close"],
+  computed: {
+    buttonTypes: () => ButtonTypes,
+  },
   methods: {
     close(retVal: boolean) {
       this.$emit("modal-close", { retVal });
     },
-  },
-  computed: {
-    buttonTypes: () => ButtonTypes,
   },
 });
 </script>
