@@ -16,12 +16,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import SelectOption from "./SelectOption.vue";
 import categoryData from "../sampleData/categories.json";
 import itemData from "../sampleData/items.json";
 import NavButton from "../common/NavButton.vue";
-import { computed } from "vue";
 import { useRoute } from "vue-router";
 
 export default defineComponent({

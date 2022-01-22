@@ -36,37 +36,42 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import itemData from "../sampleData/items.json";
 import NavButton from "../common/NavButton.vue";
 import Button from "../common/Button.vue";
+import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
   name: "Item",
   components: { NavButton, Button },
-  data() {
-    return {
-      quantity: 0,
-      initialQuantity: 0, // quantity retrieved from store when page loads
+  setup() {
+    const route = useRoute();
+    const store = useStore();
+    const quantity = ref(0);
+    const initialQuantity = ref(0); // quantity retrieved from store when page loads
+
+    const matchedItem = itemData.items.find(
+      (items) => items.id === route.params.itemId
+    );
+    const matchedItemId = matchedItem?.id;
+
+    const initializeQuantities = () => {
+      quantity.value = matchedItemId
+        ? store.getters.getOrderItemQuantity(matchedItemId)
+        : 0;
+      initialQuantity.value = quantity.value;
     };
-  },
-  computed: {
-    item() {
-      return itemData.items.find(
-        (items) => items.id === this.$route.params.itemId
-      );
-    },
-    itemId(): string | undefined {
-      return itemData.items.find(
-        (items) => items.id === this.$route.params.itemId
-      )?.id;
-    },
-  },
-  mounted() {
-    this.quantity = this.itemId
-      ? this.$store.getters.getOrderItemQuantity(this.itemId)
-      : 0;
-    this.initialQuantity = this.quantity;
+
+    onMounted(initializeQuantities);
+
+    return {
+      quantity,
+      initialQuantity,
+      item: matchedItem,
+      itemId: matchedItemId,
+    };
   },
   methods: {
     onBackClicked() {
