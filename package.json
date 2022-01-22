@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "lint": "eslint --ext .ts,.vue --ignore-path .gitignore --fix src",
+    "check-types": "vue-tsc --noEmit",
     "build": "vite build",
     "serve": "vite preview",
     "prepare": "husky install",

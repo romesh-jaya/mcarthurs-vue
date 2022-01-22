@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <div v-if="itemId" class="category-title">
-      {{ item.value }}
+      {{ item?.value }}
     </div>
     <div v-else class="category-title">Item not found</div>
     <div v-if="itemId" class="content">
       <div class="image-div">
-        <img :src="item.thumbnailURL" class="item-image" />
+        <img :src="item?.thumbnailURL" class="item-image" />
       </div>
-      <div class="description">{{ item.description }}</div>
+      <div class="description">{{ item?.description }}</div>
       <div class="quantity">
         <Button class="button-change-quantity" @on-click="onReducedQuantity"
           >-</Button
