@@ -21,7 +21,7 @@ import NavButton from "../common/NavButton.vue";
 export default defineComponent({
   name: "SelectCategory",
   components: { SelectOption, NavButton },
-  data() {
+  setup() {
     return {
       categories: categoryData.categories,
     };

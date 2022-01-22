@@ -21,29 +21,27 @@ import SelectOption from "./SelectOption.vue";
 import categoryData from "../sampleData/categories.json";
 import itemData from "../sampleData/items.json";
 import NavButton from "../common/NavButton.vue";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
   name: "SelectItem",
   components: { SelectOption, NavButton },
-  data() {
-    return {};
-  },
-  computed: {
-    category() {
-      return categoryData.categories.find(
-        (category) => category.id === this.$route.params.categoryId
-      )?.value;
-    },
-    categoryId() {
-      return categoryData.categories.find(
-        (category) => category.id === this.$route.params.categoryId
-      )?.id;
-    },
-    items() {
+  setup() {
+    const route = useRoute();
+
+    const matchedCategory = categoryData.categories.find(
+      (category) => category.id === route.params.categoryId
+    );
+
+    const category = computed(() => matchedCategory?.value);
+    const categoryId = computed(() => matchedCategory?.id);
+    const items = computed(() => {
       return itemData.items.filter(
-        (item) => item.categoryId === this.$route.params.categoryId
+        (item) => item.categoryId === route.params.categoryId
       );
-    },
+    });
+    return { category, categoryId, items };
   },
   methods: {
     onBackClicked() {

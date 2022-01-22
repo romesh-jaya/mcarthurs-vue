@@ -11,6 +11,7 @@ Tech stack used:
 - Fontawesome icons
 - Lazy loading routes
 - Husky
+- Composition API
 
 Site is hosted here:
 https://mcarthurs-kiosk.web.app/
