@@ -71,7 +71,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import { useStore } from "vuex";
 import NavButton from "../common/NavButton.vue";
 import Modal from "../common/Modal.vue";
 import { ButtonTypes } from "../enums/ButtonTypes";
@@ -79,18 +80,19 @@ import { ButtonTypes } from "../enums/ButtonTypes";
 export default defineComponent({
   name: "MyOrder",
   components: { NavButton, Modal },
-  data() {
+  setup() {
+    const store = useStore();
+    const showCancelOrderModal = ref(false);
+    const showSubmitOrderModal = ref(false);
+    const showSubmittedOrderModal = ref(false);
+
     return {
-      showCancelOrderModal: false,
-      showSubmitOrderModal: false,
-      showSubmittedOrderModal: false,
+      showCancelOrderModal,
+      showSubmitOrderModal,
+      showSubmittedOrderModal,
+      orderItems: store.state.orderItems,
+      buttonTypes: ButtonTypes,
     };
-  },
-  computed: {
-    orderItems() {
-      return this.$store.state.orderItems;
-    },
-    buttonTypes: () => ButtonTypes,
   },
   methods: {
     onCancelOrderClicked() {
