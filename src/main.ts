@@ -1,8 +1,10 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import Landing from "./components/Landing.vue";
-
+import axios from "axios";
+import VueAxios from "vue-axios";
 import { createRouter, createWebHistory } from "vue-router";
+
+import Landing from "./components/Landing.vue";
 import { store } from "./store/store";
 import FontAwesomeIcon from "./fontawesome-icons";
 
@@ -29,6 +31,7 @@ const router = createRouter({
 const app = createApp(App);
 app.use(router);
 app.use(store);
+app.use(VueAxios, axios);
 app.component("FontAwesomeIcon", FontAwesomeIcon);
 
 app.mount("#app");
