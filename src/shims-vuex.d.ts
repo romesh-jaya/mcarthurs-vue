@@ -1,10 +1,10 @@
 import { Store } from "vuex";
-import { OrderItem } from "./types/OrderItem";
+import { OrderState } from "./store/order";
 
 declare module "@vue/runtime-core" {
   // declare your own store states
   interface State {
-    orderItems: OrderItem[];
+    order: OrderState;
   }
 
   // provide typings for `this.$store`

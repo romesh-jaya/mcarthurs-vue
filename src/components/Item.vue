@@ -59,7 +59,7 @@ export default defineComponent({
 
     const initializeQuantities = () => {
       quantity.value = matchedItemId
-        ? store.getters.getOrderItemQuantity(matchedItemId)
+        ? store.getters["order/getOrderItemQuantity"](matchedItemId)
         : 0;
       initialQuantity.value = quantity.value;
     };
@@ -96,9 +96,9 @@ export default defineComponent({
         };
 
         if (this.initialQuantity === 0) {
-          this.$store.commit("addOrderItem", itemData);
+          this.$store.commit("order/addOrderItem", itemData);
         } else {
-          this.$store.commit("saveOrderItem", itemData);
+          this.$store.commit("order/saveOrderItem", itemData);
         }
         this.$router.push("/my-order");
       }

@@ -90,14 +90,14 @@ export default defineComponent({
       showCancelOrderModal,
       showSubmitOrderModal,
       showSubmittedOrderModal,
-      orderItems: store.state.orderItems,
+      orderItems: store.state.order.orderItems,
       buttonTypes: ButtonTypes,
     };
   },
   methods: {
     onCancelOrderClicked() {
       if (this.orderItems.length === 0) {
-        this.$store.commit("clearAllItems");
+        this.$store.commit("order/clearAllItems");
         this.$router.push("/");
         return;
       }
@@ -116,7 +116,7 @@ export default defineComponent({
       const { retVal } = value;
       this.showCancelOrderModal = false;
       if (retVal) {
-        this.$store.commit("clearAllItems");
+        this.$store.commit("order/clearAllItems");
         this.$router.push("/");
       }
     },
@@ -129,7 +129,7 @@ export default defineComponent({
     },
     onModalClosedSubmitted() {
       this.showSubmittedOrderModal = false;
-      this.$store.commit("clearAllItems");
+      this.$store.commit("order/clearAllItems");
       this.$router.push("/");
     },
   },

@@ -6,9 +6,16 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import axios from "./axios";
 
 export default defineComponent({
   name: "App",
+  mounted() {
+    const getCategories = async () => {
+      await axios.get("/categories");
+    };
+    getCategories();
+  },
 });
 </script>
 
