@@ -5,7 +5,7 @@ import VueAxios from "vue-axios";
 import { createRouter, createWebHistory } from "vue-router";
 
 import Landing from "./components/Landing.vue";
-import { store } from "./store/store";
+import { store, key } from "./store";
 import FontAwesomeIcon from "./fontawesome-icons";
 
 const SelectCategory = () => import("./components/SelectCategory.vue");
@@ -30,7 +30,7 @@ const router = createRouter({
 
 const app = createApp(App);
 app.use(router);
-app.use(store);
+app.use(store, key);
 app.use(VueAxios, axios);
 app.component("FontAwesomeIcon", FontAwesomeIcon);
 

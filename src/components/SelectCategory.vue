@@ -2,7 +2,7 @@
   <div class="container">
     <div class="category-title">Select Category</div>
     <SelectOption
-      :options="categories"
+      :options="categoryOptions"
       class="select-categories"
       @option-clicked="onCategoryClicked"
     />
@@ -15,15 +15,23 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import SelectOption from "./SelectOption.vue";
-import categoryData from "../sampleData/categories.json";
 import NavButton from "../common/NavButton.vue";
+import { useStore } from "vuex";
+import { key } from "../store";
 
 export default defineComponent({
   name: "SelectCategory",
   components: { SelectOption, NavButton },
   setup() {
+    const store = useStore(key);
     return {
-      categories: categoryData.categories,
+      categoryOptions: store.state.categories.categories.map((category) => {
+        return {
+          id: category.categoryId,
+          value: category.categoryName,
+          thumbnailURL: category.imageId,
+        };
+      }),
     };
   },
   methods: {

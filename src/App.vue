@@ -7,12 +7,23 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import axios from "./axios";
+import { Category } from "./types/Category";
 
 export default defineComponent({
   name: "App",
   mounted() {
     const getCategories = async () => {
-      await axios.get("/categories");
+      const response = await axios.get("/categories");
+      const categoryData: Category[] = response.data.data.map(
+        (category: any) => {
+          return {
+            categoryId: category.attributes.categoryId,
+            categoryName: category.attributes.categoryName,
+            imageId: category.attributes.imageId,
+          };
+        }
+      );
+      this.$store.commit("categories/saveCategories", categoryData);
     };
     getCategories();
   },

@@ -5,6 +5,7 @@ declare module "@vue/runtime-core" {
   // declare your own store states
   interface State {
     order: OrderState;
+    categories: CategoriesState;
   }
 
   // provide typings for `this.$store`
