@@ -18,23 +18,25 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import SelectOption from "./SelectOption.vue";
-import categoryData from "../sampleData/categories.json";
 import itemData from "../sampleData/items.json";
 import NavButton from "../common/NavButton.vue";
 import { useRoute } from "vue-router";
+import { useStore } from "../store";
 
 export default defineComponent({
   name: "SelectItem",
   components: { SelectOption, NavButton },
   setup() {
+    const store = useStore();
     const route = useRoute();
 
-    const matchedCategory = categoryData.categories.find(
-      (category) => category.id === route.params.categoryId
+    const categories = store.state.categories.categories;
+    const matchedCategory = categories.find(
+      (category) => category.categoryId === route.params.categoryId
     );
 
-    const category = computed(() => matchedCategory?.value);
-    const categoryId = computed(() => matchedCategory?.id);
+    const category = computed(() => matchedCategory?.categoryName);
+    const categoryId = computed(() => matchedCategory?.categoryId);
     const items = computed(() => {
       return itemData.items.filter(
         (item) => item.categoryId === route.params.categoryId

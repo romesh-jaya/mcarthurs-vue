@@ -1,5 +1,5 @@
 import { InjectionKey } from "vue";
-import { createStore, Store } from "vuex";
+import { createStore, Store, useStore as baseUseStore } from "vuex";
 import { categories, CategoriesState } from "./categories";
 import { order, OrderState } from "./order";
 
@@ -17,3 +17,7 @@ export const store = createStore<StoreState>({
     categories,
   },
 });
+
+export function useStore() {
+  return baseUseStore(key);
+}

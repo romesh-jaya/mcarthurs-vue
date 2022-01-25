@@ -40,7 +40,7 @@ import { defineComponent, ref, onMounted } from "vue";
 import itemData from "../sampleData/items.json";
 import NavButton from "../common/NavButton.vue";
 import Button from "../common/Button.vue";
-import { useStore } from "vuex";
+import { useStore } from "../store";
 import { useRoute } from "vue-router";
 
 export default defineComponent({

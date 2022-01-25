@@ -16,14 +16,13 @@
 import { defineComponent } from "vue";
 import SelectOption from "./SelectOption.vue";
 import NavButton from "../common/NavButton.vue";
-import { useStore } from "vuex";
-import { key } from "../store";
+import { useStore } from "../store";
 
 export default defineComponent({
   name: "SelectCategory",
   components: { SelectOption, NavButton },
   setup() {
-    const store = useStore(key);
+    const store = useStore();
     return {
       categoryOptions: store.state.categories.categories.map((category) => {
         return {

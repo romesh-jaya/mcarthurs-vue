@@ -72,7 +72,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "../store";
 import NavButton from "../common/NavButton.vue";
 import Modal from "../common/Modal.vue";
 import { ButtonTypes } from "../enums/ButtonTypes";
