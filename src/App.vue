@@ -10,17 +10,21 @@ import axios from "./axios";
 import { Category } from "./types/Category";
 import { Item } from "./types/Item";
 
+const BE_URL = import.meta.env.VITE_BE_URL;
+
 export default defineComponent({
   name: "App",
   mounted() {
     const getBasicData = async () => {
-      const response = await axios.get("/categories");
+      const response = await axios.get("/categories?populate=*");
       const categoryData: Category[] = response.data.data.map(
         (category: any) => {
           return {
             categoryId: category.attributes.categoryId,
             categoryName: category.attributes.categoryName,
-            imageId: category.attributes.imageId,
+            imageURL:
+              BE_URL +
+              category.attributes.image.data.attributes.formats.thumbnail.url,
           };
         }
       );

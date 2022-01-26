@@ -28,7 +28,7 @@ export default defineComponent({
         return {
           id: category.categoryId,
           value: category.categoryName,
-          thumbnailURL: "/images/" + category.imageId,
+          thumbnailURL: category.imageURL,
         };
       }),
     };
