@@ -8,11 +8,12 @@
 import { defineComponent } from "vue";
 import axios from "./axios";
 import { Category } from "./types/Category";
+import { Item } from "./types/Item";
 
 export default defineComponent({
   name: "App",
   mounted() {
-    const getCategories = async () => {
+    const getBasicData = async () => {
       const response = await axios.get("/categories");
       const categoryData: Category[] = response.data.data.map(
         (category: any) => {
@@ -23,9 +24,21 @@ export default defineComponent({
           };
         }
       );
+      const response2 = await axios.get("/items?populate=*");
+      const itemData: Item[] = response2.data.data.map((item: any) => {
+        return {
+          itemId: item.attributes.itemId,
+          itemName: item.attributes.itemName,
+          imageId: item.attributes.imageId,
+          categoryId: item.attributes.category.data.attributes.categoryId,
+          description: item.attributes.description,
+          price: item.attributes.price,
+        };
+      });
       this.$store.commit("categories/saveCategories", categoryData);
+      this.$store.commit("items/saveItems", itemData);
     };
-    getCategories();
+    getBasicData();
   },
 });
 </script>

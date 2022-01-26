@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <div v-if="itemId" class="category-title">
-      {{ item?.value }}
+      {{ item?.itemName }}
     </div>
     <div v-else class="category-title">Item not found</div>
     <div v-if="itemId" class="content">
       <div class="image-div">
-        <img :src="item?.thumbnailURL" class="item-image" />
+        <img :src="imageURL" class="item-image" />
       </div>
       <div class="description">{{ item?.description }}</div>
       <div class="quantity">
@@ -37,7 +37,6 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from "vue";
-import itemData from "../sampleData/items.json";
 import NavButton from "../common/NavButton.vue";
 import Button from "../common/Button.vue";
 import { useStore } from "../store";
@@ -52,10 +51,10 @@ export default defineComponent({
     const quantity = ref(0);
     const initialQuantity = ref(0); // quantity retrieved from store when page loads
 
-    const matchedItem = itemData.items.find(
-      (items) => items.id === route.params.itemId
+    const matchedItem = store.state.items.items.find(
+      (item) => item.itemId === route.params.itemId
     );
-    const matchedItemId = matchedItem?.id;
+    const matchedItemId = matchedItem?.itemId;
 
     const initializeQuantities = () => {
       quantity.value = matchedItemId
@@ -71,6 +70,7 @@ export default defineComponent({
       initialQuantity,
       item: matchedItem,
       itemId: matchedItemId,
+      imageURL: "/images/" + matchedItem?.imageId,
     };
   },
   methods: {
@@ -89,10 +89,10 @@ export default defineComponent({
     onAddSaveToOrder() {
       if (this.item) {
         const itemData = {
-          itemId: this.item.id,
+          itemId: this.item.itemId,
           quantity: this.quantity,
           total: this.item.price * this.quantity,
-          itemName: this.item.value,
+          itemName: this.item.itemName,
         };
 
         if (this.initialQuantity === 0) {

@@ -5,7 +5,7 @@
     </div>
     <div v-else class="category-title">Category not found</div>
     <SelectOption
-      :options="items"
+      :options="itemOptions"
       class="select-categories"
       @option-clicked="onItemClicked"
     />
@@ -18,7 +18,6 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import SelectOption from "./SelectOption.vue";
-import itemData from "../sampleData/items.json";
 import NavButton from "../common/NavButton.vue";
 import { useRoute } from "vue-router";
 import { useStore } from "../store";
@@ -36,13 +35,21 @@ export default defineComponent({
     );
 
     const category = computed(() => matchedCategory?.categoryName);
-    const categoryId = computed(() => matchedCategory?.categoryId);
     const items = computed(() => {
-      return itemData.items.filter(
+      return store.state.items.items.filter(
         (item) => item.categoryId === route.params.categoryId
       );
     });
-    return { category, categoryId, items };
+    return {
+      category,
+      itemOptions: items.value.map((item) => {
+        return {
+          id: item.itemId,
+          value: item.itemName,
+          thumbnailURL: "/images/" + item.imageId,
+        };
+      }),
+    };
   },
   methods: {
     onBackClicked() {
