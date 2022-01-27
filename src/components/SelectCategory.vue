@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import SelectOption from "./SelectOption.vue";
 import NavButton from "../common/NavButton.vue";
 import { useStore } from "../store";
@@ -23,14 +23,18 @@ export default defineComponent({
   components: { SelectOption, NavButton },
   setup() {
     const store = useStore();
-    return {
-      categoryOptions: store.state.categories.categories.map((category) => {
+
+    const categoryOptions = computed(() =>
+      store.state.categories.categories.map((category) => {
         return {
           id: category.categoryId,
           value: category.categoryName,
           thumbnailURL: category.imageURL,
         };
-      }),
+      })
+    );
+    return {
+      categoryOptions,
     };
   },
   methods: {

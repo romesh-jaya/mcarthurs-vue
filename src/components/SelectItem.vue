@@ -29,26 +29,31 @@ export default defineComponent({
     const store = useStore();
     const route = useRoute();
 
-    const categories = store.state.categories.categories;
-    const matchedCategory = categories.find(
-      (category) => category.categoryId === route.params.categoryId
+    const categories = computed(() => store.state.categories.categories);
+    const matchedCategory = computed(() =>
+      categories.value.find(
+        (category) => category.categoryId === route.params.categoryId
+      )
     );
 
-    const category = computed(() => matchedCategory?.categoryName);
+    const category = computed(() => matchedCategory.value?.categoryName);
     const items = computed(() => {
       return store.state.items.items.filter(
         (item) => item.categoryId === route.params.categoryId
       );
     });
-    return {
-      category,
-      itemOptions: items.value.map((item) => {
+    const itemOptions = computed(() => {
+      return items.value.map((item) => {
         return {
           id: item.itemId,
           value: item.itemName,
           thumbnailURL: "/images/" + item.imageId,
         };
-      }),
+      });
+    });
+    return {
+      category,
+      itemOptions,
     };
   },
   methods: {
