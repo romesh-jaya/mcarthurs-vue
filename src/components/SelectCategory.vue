@@ -29,7 +29,7 @@ export default defineComponent({
         return {
           id: category.categoryId,
           value: category.categoryName,
-          thumbnailURL: category.imageURL,
+          thumbnailURL: category.thumbnailURL,
         };
       })
     );

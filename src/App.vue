@@ -28,7 +28,7 @@ export default defineComponent({
             return {
               categoryId: category.attributes.categoryId,
               categoryName: category.attributes.categoryName,
-              imageURL:
+              thumbnailURL:
                 BE_URL +
                 category.attributes.image.data.attributes.formats.thumbnail.url,
             };
@@ -39,7 +39,10 @@ export default defineComponent({
           return {
             itemId: item.attributes.itemId,
             itemName: item.attributes.itemName,
-            imageId: item.attributes.imageId,
+            imageURL: BE_URL + item.attributes.image.data.attributes.url,
+            thumbnailURL:
+              BE_URL +
+              item.attributes.image.data.attributes.formats.thumbnail.url,
             categoryId: item.attributes.category.data.attributes.categoryId,
             description: item.attributes.description,
             price: item.attributes.price,

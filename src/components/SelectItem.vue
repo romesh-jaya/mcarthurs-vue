@@ -47,7 +47,7 @@ export default defineComponent({
         return {
           id: item.itemId,
           value: item.itemName,
-          thumbnailURL: "/images/" + item.imageId,
+          thumbnailURL: item.thumbnailURL,
         };
       });
     });

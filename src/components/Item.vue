@@ -6,7 +6,7 @@
     <div v-else class="category-title">Item not found</div>
     <div v-if="itemId" class="content">
       <div class="image-div">
-        <img :src="imageURL" class="item-image" />
+        <img :src="item?.imageURL" class="item-image" />
       </div>
       <div class="description">{{ item?.description }}</div>
       <div class="quantity">
@@ -70,7 +70,6 @@ export default defineComponent({
       initialQuantity,
       item: matchedItem,
       itemId: matchedItemId,
-      imageURL: "/images/" + matchedItem?.imageId,
     };
   },
   methods: {
