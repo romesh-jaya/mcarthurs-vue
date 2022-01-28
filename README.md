@@ -13,6 +13,10 @@ Tech stack used:
 - Husky
 - Composition API
 
+Backend integration with:
+
+- STRAPI
+
 Site is hosted here:
 https://mcarthurs-kiosk.web.app/
 
