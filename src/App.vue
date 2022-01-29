@@ -11,7 +11,6 @@ import { Category } from "./types/Category";
 import { Item } from "./types/Item";
 import { createToaster } from "@meforma/vue-toaster";
 
-const BE_URL = import.meta.env.VITE_BE_URL;
 const toaster = createToaster({
   position: "top-right",
   duration: 6000,
@@ -25,24 +24,29 @@ export default defineComponent({
         const response = await axios.get("/categories?populate=*");
         const categoryData: Category[] = response.data.data.map(
           (category: any) => {
+            const isImageAvailable = !!category.attributes.image.data;
             return {
               categoryId: category.attributes.categoryId,
               categoryName: category.attributes.categoryName,
-              thumbnailURL:
-                BE_URL +
-                category.attributes.image.data.attributes.formats.thumbnail.url,
+              thumbnailURL: isImageAvailable
+                ? category.attributes.image.data.attributes.formats.thumbnail
+                    .url
+                : "",
             };
           }
         );
         const response2 = await axios.get("/items?populate=*");
         const itemData: Item[] = response2.data.data.map((item: any) => {
+          const isImageAvailable = !!item.attributes.image.data;
           return {
             itemId: item.attributes.itemId,
             itemName: item.attributes.itemName,
-            imageURL: BE_URL + item.attributes.image.data.attributes.url,
-            thumbnailURL:
-              BE_URL +
-              item.attributes.image.data.attributes.formats.thumbnail.url,
+            imageURL: isImageAvailable
+              ? item.attributes.image.data.attributes.url
+              : "",
+            thumbnailURL: isImageAvailable
+              ? item.attributes.image.data.attributes.formats.thumbnail.url
+              : "",
             categoryId: item.attributes.category.data.attributes.categoryId,
             description: item.attributes.description,
             price: item.attributes.price,
