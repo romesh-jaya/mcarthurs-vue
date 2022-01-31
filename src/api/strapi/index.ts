@@ -3,7 +3,7 @@ import { Category } from "@/types/Category";
 import { Item } from "@/types/Item";
 
 export const getCategories = async (): Promise<Category[]> => {
-  const response = await axios.get("/categories?populate=*");
+  const response = await axios.get("/api/categories?populate=*");
   const categoryData: Category[] = response.data.data.map((category: any) => {
     const isImageAvailable = !!category.attributes.image.data;
     return {
@@ -18,7 +18,7 @@ export const getCategories = async (): Promise<Category[]> => {
 };
 
 export const getItems = async (): Promise<Item[]> => {
-  const response = await axios.get("/items?populate=*");
+  const response = await axios.get("/api/items?populate=*");
   const itemData: Item[] = response.data.data.map((item: any) => {
     const isImageAvailable = !!item.attributes.image.data;
     return {
