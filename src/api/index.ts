@@ -1,6 +1,9 @@
 import { Category } from "@/types/Category";
 import { Item } from "@/types/Item";
-import { getCategories, getItems } from "./strapi";
+import {
+  getCategories as getCategoriesStrapi,
+  getItems as getItemsStrapi,
+} from "./strapi";
 
 export type BasicData = {
   categoryData: Category[];
@@ -8,8 +11,11 @@ export type BasicData = {
 };
 
 export const getBasicData = async (): Promise<BasicData> => {
-  const categoryData = await getCategories();
-  const itemData = await getItems();
+  if (import.meta.env.VITE_BE_URL === "STRAPI") {
+    const categoryData = await getCategoriesStrapi();
+    const itemData = await getItemsStrapi();
+    return { categoryData, itemData };
+  }
 
-  return { categoryData, itemData };
+  return { categoryData: [], itemData: [] };
 };
