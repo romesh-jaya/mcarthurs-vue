@@ -6,10 +6,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import axios from "./axios";
-import { Category } from "./types/Category";
-import { Item } from "./types/Item";
 import { createToaster } from "@meforma/vue-toaster";
+import { getBasicData } from "./api";
 
 const toaster = createToaster({
   position: "top-right",
@@ -19,39 +17,9 @@ const toaster = createToaster({
 export default defineComponent({
   name: "App",
   mounted() {
-    const getBasicData = async () => {
+    const fetchBasicData = async () => {
       try {
-        const response = await axios.get("/categories?populate=*");
-        const categoryData: Category[] = response.data.data.map(
-          (category: any) => {
-            const isImageAvailable = !!category.attributes.image.data;
-            return {
-              categoryId: category.attributes.categoryId,
-              categoryName: category.attributes.categoryName,
-              thumbnailURL: isImageAvailable
-                ? category.attributes.image.data.attributes.formats.thumbnail
-                    .url
-                : "",
-            };
-          }
-        );
-        const response2 = await axios.get("/items?populate=*");
-        const itemData: Item[] = response2.data.data.map((item: any) => {
-          const isImageAvailable = !!item.attributes.image.data;
-          return {
-            itemId: item.attributes.itemId,
-            itemName: item.attributes.itemName,
-            imageURL: isImageAvailable
-              ? item.attributes.image.data.attributes.url
-              : "",
-            thumbnailURL: isImageAvailable
-              ? item.attributes.image.data.attributes.formats.thumbnail.url
-              : "",
-            categoryId: item.attributes.category.data.attributes.categoryId,
-            description: item.attributes.description,
-            price: item.attributes.price,
-          };
-        });
+        const { categoryData, itemData } = await getBasicData();
 
         this.$store.commit("categories/saveCategories", categoryData);
         this.$store.commit("items/saveItems", itemData);
@@ -59,7 +27,7 @@ export default defineComponent({
         toaster.error("Error in accessing backend server!");
       }
     };
-    getBasicData();
+    fetchBasicData();
   },
 });
 </script>
