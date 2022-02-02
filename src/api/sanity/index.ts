@@ -2,6 +2,7 @@ import axios from "../../axios";
 import { Category } from "@/types/Category";
 import { Item } from "@/types/Item";
 
+// Note: the long query is because it is a GROQ query, converted into URL
 export const getCategories = async (): Promise<Category[]> => {
   const response = await axios.get(
     "/production?query=*%5B_type%20%3D%3D%20'category'%5D%7B%0A%20%20categoryId%2C%0A%20%20categoryName%2C%0A%20%20%22imageUrl%22%3A%20image.asset-%3Eurl%2C%0A%7D"
