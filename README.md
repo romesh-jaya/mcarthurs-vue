@@ -19,6 +19,8 @@ Backend integration with:
 - SANITY
 - GRAPHCMS
 
+The same dataset is present in all 3 backends. 3 different backends have been used for demo purposes only.
+
 Site is hosted here:
 https://mcarthurs-kiosk.web.app/
 
