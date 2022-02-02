@@ -1,12 +1,14 @@
-import { createApp } from "vue";
+import { createApp, provide, h } from "vue";
 import App from "./App.vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import { createRouter, createWebHistory } from "vue-router";
+import { DefaultApolloClient } from "@vue/apollo-composable";
 
 import Landing from "./components/Landing.vue";
 import { store, key } from "./store";
 import FontAwesomeIcon from "./fontawesome-icons";
+import { apolloClient } from "./apolloClient";
 
 const SelectCategory = () => import("./components/SelectCategory.vue");
 const SelectItem = () => import("./components/SelectItem.vue");
@@ -28,7 +30,13 @@ const router = createRouter({
   routes,
 });
 
-const app = createApp(App);
+const app = createApp({
+  setup() {
+    provide(DefaultApolloClient, apolloClient);
+  },
+
+  render: () => h(App),
+});
 app.use(router);
 app.use(store, key);
 app.use(VueAxios, axios);
