@@ -63,7 +63,8 @@
       <template #body>
         <p>
           Your order has been submitted! Order No:
-          {{ Math.floor(Math.random() * 100) }}
+          <!-- Note: Math.random() may return 0 as a value, so have a min value of 1 -->
+          {{ Math.floor(Math.random() * 100) + 1 }}
         </p>
       </template>
     </Modal>
