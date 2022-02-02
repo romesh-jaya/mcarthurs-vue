@@ -16,6 +16,8 @@ Tech stack used:
 Backend integration with:
 
 - STRAPI
+- SANITY
+- GRAPHCMS
 
 Site is hosted here:
 https://mcarthurs-kiosk.web.app/

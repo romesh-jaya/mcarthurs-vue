@@ -14,6 +14,8 @@ import { useStore } from "./store";
 import { Category } from "./types/Category";
 import { Item } from "./types/Item";
 
+const bEServerType = import.meta.env.VITE_BE_SERVER;
+
 const toaster = createToaster({
   position: "top-right",
   duration: 6000,
@@ -22,6 +24,7 @@ const toaster = createToaster({
 export default defineComponent({
   name: "App",
   setup() {
+    // By default, enabledGraphCMS=false. Only enable it if GraphCMS is the chosen CMS in .env
     const enabledGraphCMS = ref(false);
     const { result: categoriesResult, error: categoriesError } = useQuery(
       getCategories,
@@ -38,8 +41,8 @@ export default defineComponent({
       })
     );
     const store = useStore();
-    const bEServerType = import.meta.env.VITE_BE_SERVER;
-    const fetchBasicData = async () => {
+
+    const fetchBasicDataStrapiSanity = async () => {
       try {
         const { categoryData, itemData } = await getBasicData();
 
@@ -52,7 +55,7 @@ export default defineComponent({
 
     // Fetch data
     if (bEServerType === "STRAPI" || bEServerType === "SANITY") {
-      fetchBasicData();
+      fetchBasicDataStrapiSanity();
     } else if (bEServerType === "GRAPHCMS") {
       enabledGraphCMS.value = true;
     } else {
@@ -95,7 +98,7 @@ export default defineComponent({
       }
     });
 
-    // Error handling
+    // Error handling for GraphCMS
     watch(categoriesError, () => {
       if (categoriesError.value) {
         toaster.error("Error in accessing backend server!");
