@@ -2,7 +2,7 @@
   <div class="landing-container">
     <div class="category-title">McArthur's Colombo</div>
     <div class="description">Please login to use Kiosk</div>
-    <form @submit="onSubmit">
+    <form class="form" @submit.prevent="onSubmit">
       <div class="form-group">
         <label for="email">Email:</label>
         <input v-model="email" name="email" class="login-input" />
@@ -19,17 +19,22 @@
         />
         <span>{{ passwordError }}</span>
       </div>
+      <div class="button-container">
+        <PrimaryButton button-type="submit">Login</PrimaryButton>
+      </div>
     </form>
-    <div class="button-container">
-      <PrimaryButton>Login</PrimaryButton>
-    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import PrimaryButton from "../common/PrimaryButton.vue";
-import { useForm, useField } from "vee-validate";
+import {
+  useForm,
+  useField,
+  useValidateForm,
+  useIsFormValid,
+} from "vee-validate";
 import * as yup from "yup";
 
 export default defineComponent({
@@ -44,14 +49,16 @@ export default defineComponent({
       password: yup.string().required().label("Password"),
     });
 
-    // Create a form context with the validation schema
-    const { handleSubmit } = useForm({
+    useForm({
       validationSchema: schema,
     });
+    const validate = useValidateForm();
+    const isFormValid = useIsFormValid();
 
-    const onSubmit = handleSubmit((values) => {
-      alert(JSON.stringify(values, null, 2));
-    });
+    const onSubmit = async () => {
+      await validate();
+      console.log("isFormValid", isFormValid.value);
+    };
 
     // No need to define rules for fields
     const { value: email, errorMessage: emailError } = useField<string>(
@@ -117,6 +124,12 @@ export default defineComponent({
   input {
     font-size: 1.5rem;
   }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0px;
 }
 
 .button-container {

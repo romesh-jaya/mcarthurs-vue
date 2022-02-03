@@ -20,7 +20,7 @@ export default defineComponent({
   props: {
     disabled: Boolean,
     buttonType: {
-      default: "submit",
+      default: "button",
       type: String,
     },
   },

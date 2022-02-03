@@ -12,6 +12,7 @@ Tech stack used:
 - Lazy loading routes
 - Husky
 - Composition API
+- vee-validate for form validation
 
 Backend integration with:
 

@@ -1,5 +1,9 @@
 <template>
-  <Button class="primary-button" @on-click="$emit('on-click')">
+  <Button
+    class="primary-button"
+    :button-type="buttonType"
+    @on-click="$emit('on-click')"
+  >
     <slot></slot>
   </Button>
 </template>
@@ -11,7 +15,7 @@ import Button from "./Button.vue";
 export default defineComponent({
   name: "PrimaryButton",
   components: { Button },
-  props: { buttonType: { default: "submit", type: String } },
+  props: { buttonType: { default: "button", type: String } },
   emits: ["on-click"],
 });
 </script>
