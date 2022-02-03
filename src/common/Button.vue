@@ -3,6 +3,7 @@
     class="button"
     :class="{ disabled: disabled }"
     :disabled="disabled"
+    :type="buttonTypeComputed"
     @click="$emit('on-click')"
   >
     <slot></slot>
@@ -10,12 +11,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
+
+export type ButtonType = "button" | "submit" | "reset";
 
 export default defineComponent({
   name: "Button",
-  props: { disabled: Boolean },
+  props: {
+    disabled: Boolean,
+    buttonType: {
+      default: "submit",
+      type: String,
+    },
+  },
   emits: ["on-click"],
+  setup(props) {
+    const buttonTypeComputed = computed(() => props.buttonType as ButtonType);
+    return {
+      buttonTypeComputed,
+    };
+  },
 });
 </script>
 

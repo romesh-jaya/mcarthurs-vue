@@ -134,7 +134,7 @@ a {
 }
 
 button {
-  font-family: "Nunito";
+  font-family: inherit;
 }
 
 * {
@@ -143,6 +143,11 @@ button {
 
 p {
   margin: 0;
+}
+
+input {
+  font-family: inherit;
+  color: inherit;
 }
 
 #app {

@@ -11,6 +11,7 @@ import Button from "./Button.vue";
 export default defineComponent({
   name: "PrimaryButton",
   components: { Button },
+  props: { buttonType: { default: "submit", type: String } },
   emits: ["on-click"],
 });
 </script>

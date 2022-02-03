@@ -5,7 +5,6 @@ import VueAxios from "vue-axios";
 import { createRouter, createWebHistory } from "vue-router";
 import { DefaultApolloClient } from "@vue/apollo-composable";
 
-import Landing from "./components/Landing.vue";
 import { store, key } from "./store";
 import FontAwesomeIcon from "./fontawesome-icons";
 import { apolloClient } from "./apolloClient";
@@ -15,6 +14,8 @@ const SelectItem = () => import("./components/SelectItem.vue");
 const Item = () => import("./components/Item.vue");
 const MyOrder = () => import("./components/MyOrder.vue");
 const PageNotFound = () => import("./components/PageNotFound.vue");
+const Landing = () => import("./components/Landing.vue");
+const Login = () => import("./components/Login.vue");
 
 const routes = [
   { path: "/", component: Landing },
@@ -22,6 +23,7 @@ const routes = [
   { path: "/select-item/:categoryId", component: SelectItem },
   { path: "/items/:itemId", component: Item },
   { path: "/my-order", component: MyOrder },
+  { path: "/login", component: Login },
   { path: "/:pathMatch(.*)*", component: PageNotFound },
 ];
 
