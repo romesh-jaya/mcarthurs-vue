@@ -1,6 +1,8 @@
-import { createToaster } from "@meforma/vue-toaster";
+import { useToast } from "vue-toastification";
 
-export const toaster = createToaster({
-  position: "top-right",
-  duration: 6000,
-});
+const toast = useToast();
+
+export const showErrorToast = (text: string) =>
+  toast.error(text, { toastClassName: "toaster-error" });
+
+export const showSuccessToast = (text: string) => toast.success(text);

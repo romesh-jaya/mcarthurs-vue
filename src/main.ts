@@ -4,6 +4,8 @@ import axios from "axios";
 import VueAxios from "vue-axios";
 import { createRouter, createWebHistory } from "vue-router";
 import { DefaultApolloClient } from "@vue/apollo-composable";
+import Toast, { PluginOptions } from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 import { store, key } from "./store";
 import FontAwesomeIcon from "./fontawesome-icons";
@@ -43,5 +45,12 @@ app.use(router);
 app.use(store, key);
 app.use(VueAxios, axios);
 app.component("FontAwesomeIcon", FontAwesomeIcon);
+
+const options: PluginOptions = {
+  timeout: 5000,
+  hideProgressBar: true,
+};
+
+app.use(Toast, options);
 
 app.mount("#app");

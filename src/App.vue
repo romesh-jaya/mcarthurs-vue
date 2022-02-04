@@ -12,7 +12,7 @@ import { getCategories, getItems } from "./queries";
 import { useStore } from "./store";
 import { Category } from "./types/Category";
 import { Item } from "./types/Item";
-import { toaster } from "./utils/toaster";
+import { showErrorToast } from "./utils/toaster";
 
 const bEServerType = import.meta.env.VITE_BE_SERVER;
 
@@ -44,7 +44,7 @@ export default defineComponent({
         store.commit("categories/saveCategories", categoryData);
         store.commit("items/saveItems", itemData);
       } catch {
-        toaster.error("Error in accessing backend server!");
+        showErrorToast("Error in accessing backend server!");
       }
     };
 
@@ -96,13 +96,13 @@ export default defineComponent({
     // Error handling for GraphCMS
     watch(categoriesError, () => {
       if (categoriesError.value) {
-        toaster.error("Error in accessing backend server!");
+        showErrorToast("Error in accessing backend server!");
       }
     });
 
     watch(itemsError, () => {
       if (itemsError.value) {
-        toaster.error("Error in accessing backend server!");
+        showErrorToast("Error in accessing backend server!");
       }
     });
   },
@@ -170,7 +170,7 @@ input {
 }
 
 /* This is for the toast notifications */
-.c-toast {
-  font-family: "Nunito" !important;
+.toaster-error {
+  background-color: #cf3535 !important;
 }
 </style>

@@ -39,8 +39,9 @@ import * as yup from "yup";
 import { login } from "../api/strapi";
 import { saveDataToLocalStorage } from "../utils/auth";
 import { AxiosError } from "axios";
-import { toaster } from "../utils/toaster";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
+import { showErrorToast, showSuccessToast } from "../utils/toaster";
 
 export default defineComponent({
   name: "Landing",
@@ -60,6 +61,7 @@ export default defineComponent({
     const validate = useValidateForm();
     const isFormValid = useIsFormValid();
     const router = useRouter();
+    const toast = useToast();
 
     const onSubmit = async () => {
       await validate();
@@ -68,17 +70,17 @@ export default defineComponent({
           const data = await login(email.value, password.value);
           if (data) {
             saveDataToLocalStorage(data);
-            toaster.clear();
-            toaster.success("Login success!");
+            toast.clear();
+            showSuccessToast("Login success!");
             router.push("/");
           }
         } catch (err) {
           const error = err as AxiosError;
           if (error.response?.status === 400) {
-            toaster.error("Invalid credentials");
+            showErrorToast("Invalid credentials");
             return;
           }
-          toaster.error("Unknown error occured while logging in");
+          showErrorToast("Unknown error occured while logging in");
         }
       }
     };
