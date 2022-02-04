@@ -40,6 +40,7 @@ import { login } from "../api/strapi";
 import { saveDataToLocalStorage } from "../utils/auth";
 import { AxiosError } from "axios";
 import { toaster } from "../utils/toaster";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "Landing",
@@ -58,6 +59,7 @@ export default defineComponent({
     });
     const validate = useValidateForm();
     const isFormValid = useIsFormValid();
+    const router = useRouter();
 
     const onSubmit = async () => {
       await validate();
@@ -66,7 +68,9 @@ export default defineComponent({
           const data = await login(email.value, password.value);
           if (data) {
             saveDataToLocalStorage(data);
+            toaster.clear();
             toaster.success("Login success!");
+            router.push("/");
           }
         } catch (err) {
           const error = err as AxiosError;
@@ -102,11 +106,6 @@ export default defineComponent({
       passwordError,
       onSubmit,
     };
-  },
-  methods: {
-    onLoginClicked() {
-      this.$router.push("/select-category");
-    },
   },
 });
 </script>
