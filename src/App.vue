@@ -6,20 +6,15 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from "vue";
-import { createToaster } from "@meforma/vue-toaster";
 import { useQuery } from "@vue/apollo-composable";
 import { getBasicData } from "./api";
 import { getCategories, getItems } from "./queries";
 import { useStore } from "./store";
 import { Category } from "./types/Category";
 import { Item } from "./types/Item";
+import { toaster } from "./utils/toaster";
 
 const bEServerType = import.meta.env.VITE_BE_SERVER;
-
-const toaster = createToaster({
-  position: "top-right",
-  duration: 6000,
-});
 
 export default defineComponent({
   name: "App",

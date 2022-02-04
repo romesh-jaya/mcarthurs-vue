@@ -36,6 +36,10 @@ import {
   useIsFormValid,
 } from "vee-validate";
 import * as yup from "yup";
+import { login } from "../api/strapi";
+import { saveDataToLocalStorage } from "../utils/auth";
+import { AxiosError } from "axios";
+import { toaster } from "../utils/toaster";
 
 export default defineComponent({
   name: "Landing",
@@ -57,10 +61,25 @@ export default defineComponent({
 
     const onSubmit = async () => {
       await validate();
-      console.log("isFormValid", isFormValid.value);
+      if (isFormValid.value) {
+        try {
+          const data = await login(email.value, password.value);
+          if (data) {
+            saveDataToLocalStorage(data);
+            toaster.success("Login success!");
+          }
+        } catch (err) {
+          const error = err as AxiosError;
+          if (error.response?.status === 400) {
+            toaster.error("Invalid credentials");
+            return;
+          }
+          toaster.error("Unknown error occured while logging in");
+        }
+      }
     };
 
-    // No need to define rules for fields
+    // Need to set validateOnValueUpdate on a field by field basis when using useField
     const { value: email, errorMessage: emailError } = useField<string>(
       "email",
       undefined,

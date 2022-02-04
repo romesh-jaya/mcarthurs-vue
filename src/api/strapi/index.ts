@@ -1,6 +1,7 @@
 import axios from "../../axios";
 import { Category } from "@/types/Category";
 import { Item } from "@/types/Item";
+import { AuthInfo } from "@/types/AuthInfo";
 
 export const getCategories = async (): Promise<Category[]> => {
   const response = await axios.get("/api/categories?populate=*");
@@ -36,4 +37,16 @@ export const getItems = async (): Promise<Item[]> => {
     };
   });
   return itemData;
+};
+
+export const login = async (
+  email: string,
+  password: string
+): Promise<AuthInfo> => {
+  const { data } = await axios.post<AuthInfo>("/api/auth/local", {
+    identifier: email,
+    password: password,
+  });
+
+  return data;
 };
