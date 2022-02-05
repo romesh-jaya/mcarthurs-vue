@@ -1,5 +1,6 @@
 import { InjectionKey } from "vue";
 import { createStore, Store, useStore as baseUseStore } from "vuex";
+import { auth, AuthState } from "./auth";
 import { categories, CategoriesState } from "./categories";
 import { items, ItemState } from "./items";
 import { order, OrderState } from "./order";
@@ -8,6 +9,7 @@ export interface StoreState {
   order: OrderState;
   categories: CategoriesState;
   items: ItemState;
+  auth: AuthState;
 }
 
 export const key: InjectionKey<Store<StoreState>> = Symbol();
@@ -18,6 +20,7 @@ export const store = createStore<StoreState>({
     order,
     categories,
     items,
+    auth,
   },
 });
 

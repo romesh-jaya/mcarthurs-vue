@@ -42,6 +42,7 @@ import { AxiosError } from "axios";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { showErrorToast, showSuccessToast } from "../utils/toaster";
+import { useStore } from "../store";
 
 export default defineComponent({
   name: "Landing",
@@ -62,6 +63,7 @@ export default defineComponent({
     const isFormValid = useIsFormValid();
     const router = useRouter();
     const toast = useToast();
+    const store = useStore();
 
     const onSubmit = async () => {
       await validate();
@@ -70,6 +72,7 @@ export default defineComponent({
           const data = await login(email.value, password.value);
           if (data) {
             saveDataToLocalStorage(data);
+            store.commit("auth/saveAuthInfo", data);
             toast.clear();
             showSuccessToast("Login success!");
             router.push("/");
