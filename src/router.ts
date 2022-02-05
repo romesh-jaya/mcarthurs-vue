@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { getDataFromLocalStorage } from "./utils/auth";
 
 const SelectCategory = () => import("./components/SelectCategory.vue");
 const SelectItem = () => import("./components/SelectItem.vue");
@@ -26,11 +27,13 @@ const router = createRouter({
 router.beforeEach((to, _, next) => {
   const publicPages = ["/login"];
   const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem("user");
+  const loggedIn = getDataFromLocalStorage();
   // trying to access a restricted page + not logged in
   // redirect to login page
   if (authRequired && !loggedIn) {
     next("/login");
+  } else if (to.path === "/login" && loggedIn) {
+    next("/");
   } else {
     next();
   }
