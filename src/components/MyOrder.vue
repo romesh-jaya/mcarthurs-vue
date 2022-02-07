@@ -67,8 +67,7 @@
       <template #body>
         <p>
           Your order has been submitted! Order No:
-          <!-- Note: Math.random() may return 0 as a value, so have a min value of 1 -->
-          {{ Math.floor(Math.random() * 100) + 1 }}
+          {{ orderId }}
         </p>
       </template>
     </Modal>
@@ -81,6 +80,8 @@ import { useStore } from "../store";
 import NavButton from "../common/NavButton.vue";
 import Modal from "../common/Modal.vue";
 import { ButtonTypes } from "../enums/ButtonTypes";
+import { saveOrder } from "../api/strapi";
+import { showErrorToast } from "../utils/toaster";
 
 export default defineComponent({
   name: "MyOrder",
@@ -104,6 +105,9 @@ export default defineComponent({
       buttonTypes: ButtonTypes,
       orderTotal,
     };
+  },
+  data() {
+    return { orderId: -1 };
   },
   methods: {
     onCancelOrderClicked() {
@@ -134,8 +138,23 @@ export default defineComponent({
     onModalClosedSubmit(value: { retVal: boolean }) {
       const { retVal } = value;
       this.showSubmitOrderModal = false;
+
+      const submitToBackend = async () => {
+        const data = {
+          orderDetails: JSON.stringify(this.orderItems),
+          kioskId: this.$store.state.auth.kioskId,
+        };
+        try {
+          const orderId = await saveOrder(data);
+          this.orderId = orderId;
+          this.showSubmittedOrderModal = true;
+        } catch {
+          showErrorToast("Error in submitting order!");
+        }
+      };
+
       if (retVal) {
-        this.showSubmittedOrderModal = true;
+        submitToBackend();
       }
     },
     onModalClosedSubmitted() {

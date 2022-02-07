@@ -2,6 +2,9 @@ import axios from "../../axios";
 import { Category } from "@/types/Category";
 import { Item } from "@/types/Item";
 import { AuthInfo } from "@/types/AuthInfo";
+import { OrderInfo } from "@/types/OrderInfo";
+import { OrderResponse } from "@/types/OrderResponse";
+import { store } from "../../store";
 
 export const getCategories = async (): Promise<Category[]> => {
   const response = await axios.get("/api/categories?populate=*");
@@ -49,4 +52,21 @@ export const login = async (
   });
 
   return data;
+};
+
+export const saveOrder = async (data: OrderInfo): Promise<number> => {
+  const jwt = store.state.auth.user.jwt;
+  const { data: responseData } = await axios.post<{ data: OrderResponse }>(
+    "/api/orders",
+    {
+      data,
+    },
+    {
+      headers: {
+        Authorization: "Bearer " + jwt,
+      },
+    }
+  );
+
+  return responseData.data.id;
 };

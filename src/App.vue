@@ -15,6 +15,7 @@ import { Item } from "./types/Item";
 import { showErrorToast } from "./utils/toaster";
 
 const bEServerType = import.meta.env.VITE_BE_SERVER;
+const errorAccess = "Error in accessing backend server!";
 
 export default defineComponent({
   name: "App",
@@ -44,7 +45,7 @@ export default defineComponent({
         store.commit("categories/saveCategories", categoryData);
         store.commit("items/saveItems", itemData);
       } catch {
-        showErrorToast("Error in accessing backend server!");
+        showErrorToast(errorAccess);
       }
     };
 
@@ -96,13 +97,13 @@ export default defineComponent({
     // Error handling for GraphCMS
     watch(categoriesError, () => {
       if (categoriesError.value) {
-        showErrorToast("Error in accessing backend server!");
+        showErrorToast(errorAccess);
       }
     });
 
     watch(itemsError, () => {
       if (itemsError.value) {
-        showErrorToast("Error in accessing backend server!");
+        showErrorToast(errorAccess);
       }
     });
   },
