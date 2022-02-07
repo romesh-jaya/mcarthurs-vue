@@ -19,6 +19,11 @@
         />
         <span>{{ passwordError }}</span>
       </div>
+      <div class="form-group">
+        <label for="password">Kiosk ID:</label>
+        <input v-model="kioskId" name="kioskId" class="login-input" />
+        <span>{{ kioskIdError }}</span>
+      </div>
       <div class="button-container">
         <PrimaryButton button-type="submit">Login</PrimaryButton>
       </div>
@@ -43,6 +48,7 @@ import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { showErrorToast, showSuccessToast } from "../utils/toaster";
 import { useStore } from "../store";
+import { saveKioskIdToLocalStorage } from "../utils/kioskInfo";
 
 export default defineComponent({
   name: "Landing",
@@ -54,6 +60,7 @@ export default defineComponent({
     const schema = yup.object({
       email: yup.string().required().email().label("Email Address"),
       password: yup.string().required().label("Password"),
+      kioskId: yup.string().required().label("Kiosk ID"),
     });
 
     useForm({
@@ -72,7 +79,9 @@ export default defineComponent({
           const data = await login(email.value, password.value);
           if (data) {
             saveDataToLocalStorage(data);
+            saveKioskIdToLocalStorage(kioskId.value);
             store.commit("auth/saveAuthInfo", data);
+            store.commit("auth/saveKioskInfo", kioskId.value);
             toast.clear();
             showSuccessToast("Login success!");
             router.push("/");
@@ -103,12 +112,21 @@ export default defineComponent({
         validateOnValueUpdate: false,
       }
     );
+    const { value: kioskId, errorMessage: kioskIdError } = useField<string>(
+      "kioskId",
+      undefined,
+      {
+        validateOnValueUpdate: false,
+      }
+    );
 
     return {
       email,
       emailError,
       password,
       passwordError,
+      kioskId,
+      kioskIdError,
       onSubmit,
     };
   },
