@@ -1,9 +1,15 @@
 import { AuthInfo } from "@/types/AuthInfo";
 
+const JWT_TIMEOUT = 30;
+
 export const saveDataToLocalStorage = (data: AuthInfo) => {
   localStorage.setItem(
     "user",
-    JSON.stringify({ data, serverType: import.meta.env.VITE_BE_SERVER })
+    JSON.stringify({
+      data,
+      serverType: import.meta.env.VITE_BE_SERVER,
+      lastLoggedIn: new Date().getTime(),
+    })
   );
 };
 
@@ -19,6 +25,16 @@ export const getDataFromLocalStorage = (): AuthInfo | undefined => {
       localStorage.removeItem("user");
       return;
     }
+
+    const timeLapsedMs =
+      new Date().getTime() - new Date(userInfo.lastLoggedIn).getTime();
+
+    if (timeLapsedMs / (1000 * 60) > JWT_TIMEOUT) {
+      // if the last login was greater than 30 mins, which is the dyno discarding time in Strapi
+      localStorage.removeItem("user");
+      return;
+    }
+
     return userInfo.data;
   }
 };

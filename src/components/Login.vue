@@ -48,7 +48,10 @@ import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { showErrorToast, showSuccessToast } from "../utils/toaster";
 import { useStore } from "../store";
-import { saveKioskIdToLocalStorage } from "../utils/kioskInfo";
+import {
+  getKioskIdFromLocalStorage,
+  saveKioskIdToLocalStorage,
+} from "../utils/kioskInfo";
 
 export default defineComponent({
   name: "Landing",
@@ -119,6 +122,8 @@ export default defineComponent({
         validateOnValueUpdate: false,
       }
     );
+
+    kioskId.value = getKioskIdFromLocalStorage() || "";
 
     return {
       email,
