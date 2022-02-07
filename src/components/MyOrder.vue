@@ -19,6 +19,10 @@
         </div>
         <div>{{ item.total.toFixed(2) }}</div>
       </div>
+      <div class="order-item total">
+        <div>Total</div>
+        <div>{{ orderTotal.toFixed(2) }}</div>
+      </div>
     </div>
     <div v-else class="order-items">No items are currently in your order</div>
     <div class="navbar-bottom">
@@ -72,7 +76,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import { useStore } from "../store";
 import NavButton from "../common/NavButton.vue";
 import Modal from "../common/Modal.vue";
@@ -86,6 +90,11 @@ export default defineComponent({
     const showCancelOrderModal = ref(false);
     const showSubmitOrderModal = ref(false);
     const showSubmittedOrderModal = ref(false);
+    const orderTotal = computed(() =>
+      store.state.order.orderItems
+        .map((item) => item.total)
+        .reduce((partialSum, a) => partialSum + a, 0)
+    );
 
     return {
       showCancelOrderModal,
@@ -93,6 +102,7 @@ export default defineComponent({
       showSubmittedOrderModal,
       orderItems: store.state.order.orderItems,
       buttonTypes: ButtonTypes,
+      orderTotal,
     };
   },
   methods: {
@@ -145,6 +155,8 @@ export default defineComponent({
 }
 
 .order-items {
+  display: flex;
+  flex-direction: column;
   text-align: left;
   flex: 1 0px;
   padding-inline: 4rem;
@@ -157,8 +169,14 @@ export default defineComponent({
   justify-content: space-between;
 }
 
-.header {
+.header,
+.total {
   font-weight: 900;
+}
+
+.total {
+  flex: 1 0px;
+  align-items: flex-end;
 }
 
 .edit-icon-container {

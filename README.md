@@ -13,6 +13,7 @@ Tech stack used:
 - Husky
 - Composition API
 - vee-validate for form validation
+- Authentication
 
 Backend integration with:
 
@@ -24,6 +25,8 @@ The same dataset is present in all 3 backends. 3 different backends have been us
 
 Site is hosted here:
 https://mcarthurs-kiosk.web.app/
+
+Note: Logout functionality hasn't been provided in the app, as we don't expect the Kiosk users to be able to logout. Instead, there is a 30 min timeout and store clerk can manually clear the cache in the browser if needed to logout.
 
 ## Project setup
 
