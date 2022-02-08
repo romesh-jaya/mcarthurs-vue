@@ -26,6 +26,10 @@ The same dataset is present in all 3 backends. 3 different backends have been us
 Site is hosted here:
 https://mcarthurs-kiosk.web.app/
 
+Login credentials:
+email: user1@mcarthurs.com
+password: mcarthur1
+
 Note: Logout functionality hasn't been provided in the app, as we don't expect the Kiosk users to be able to logout by themselves. Instead, there is a 30 min timeout and store clerk can manually clear the browser cache if needed to logout.
 
 ## Project setup
