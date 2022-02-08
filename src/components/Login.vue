@@ -44,7 +44,7 @@ import {
   useIsFormValid,
 } from "vee-validate";
 import * as yup from "yup";
-import { login } from "../api/strapi";
+import { login } from "../api";
 import { saveDataToLocalStorage } from "../utils/auth";
 import { AxiosError } from "axios";
 import { useRouter } from "vue-router";

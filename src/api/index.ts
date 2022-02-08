@@ -3,11 +3,13 @@ import { Item } from "@/types/Item";
 import {
   getCategories as getCategoriesStrapi,
   getItems as getItemsStrapi,
+  login as loginStrapi,
 } from "./strapi";
 import {
   getCategories as getCategoriesSanity,
   getItems as getItemsSanity,
 } from "./sanity";
+import { AuthInfo } from "@/types/AuthInfo";
 
 export type BasicData = {
   categoryData: Category[];
@@ -25,6 +27,23 @@ export const getBasicData = async (): Promise<BasicData> => {
     const categoryData = await getCategoriesSanity();
     const itemData = await getItemsSanity();
     return { categoryData, itemData };
+  }
+
+  throw new Error("Matching VITE_BE_SERVER env variable not found");
+};
+
+export const login = async (
+  email: string,
+  password: string
+): Promise<AuthInfo> => {
+  if (import.meta.env.VITE_BE_SERVER === "STRAPI") {
+    return await loginStrapi(email, password);
+  }
+
+  if (import.meta.env.VITE_BE_SERVER === "SANITY") {
+    return {
+      jwt: import.meta.env.VITE_SANITY_TOKEN,
+    };
   }
 
   throw new Error("Matching VITE_BE_SERVER env variable not found");
