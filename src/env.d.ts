@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly VITE_BE_URL_GRAPHCMS: string;
   readonly VITE_BE_SERVER: string;
   readonly VITE_SANITY_TOKEN: string;
+  readonly VITE_GRAPHCMS_TOKEN: string;
   // more env variables...
 }
 

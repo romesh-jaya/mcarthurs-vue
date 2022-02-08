@@ -49,6 +49,12 @@ export const login = async (
     };
   }
 
+  if (import.meta.env.VITE_BE_SERVER === "GRAPHCMS") {
+    return {
+      jwt: import.meta.env.VITE_GRAPHCMS_TOKEN,
+    };
+  }
+
   throw new Error("Matching VITE_BE_SERVER env variable not found");
 };
 

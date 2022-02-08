@@ -28,3 +28,11 @@ export const getItems = gql`
     }
   }
 `;
+
+export const createOrder = gql`
+  mutation saveOrder($data: OrderCreateInput!) {
+    createOrder(data: $data) {
+      id
+    }
+  }
+`;

@@ -39,14 +39,13 @@ export const getItems = async (): Promise<Item[]> => {
 
 export const saveOrder = async (data: OrderInfo): Promise<number> => {
   const jwt = store.state.auth.user.jwt;
-  // This is only until the latest Order ID is fetched via query
+
   const tempOrderId = 1;
   const sanityData = {
     mutations: [
       {
         create: {
           _type: "order",
-          orderId: tempOrderId,
           kioskId: data.kioskId,
           orderDetails: data.orderDetails,
         },
@@ -59,5 +58,8 @@ export const saveOrder = async (data: OrderInfo): Promise<number> => {
     },
   });
 
+  // Note: in Sanity, there is no way to find out the last Order ID without race conditions
+  // Therefore we are simply hard-coding the orderId as 1
+  // ref: https://stackoverflow.com/questions/50154648/how-to-increment-property-per-document-in-sanity
   return tempOrderId;
 };

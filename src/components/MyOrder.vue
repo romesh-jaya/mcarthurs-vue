@@ -77,18 +77,26 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from "vue";
+import { useMutation } from "@vue/apollo-composable";
 import { useStore } from "../store";
 import NavButton from "../common/NavButton.vue";
 import Modal from "../common/Modal.vue";
 import { ButtonTypes } from "../enums/ButtonTypes";
 import { saveOrder } from "../api";
 import { showErrorToast } from "../utils/toaster";
+import { createOrder } from "../queries";
+
+const bEServerType = import.meta.env.VITE_BE_SERVER;
+const errorSubmitOrder = "Error in submitting order! Please contact desk";
 
 export default defineComponent({
   name: "MyOrder",
   components: { NavButton, Modal },
   setup() {
     const store = useStore();
+    const { mutate: createOrderExec, onError: onCreateOrderError } =
+      useMutation(createOrder);
+
     const showCancelOrderModal = ref(false);
     const showSubmitOrderModal = ref(false);
     const showSubmittedOrderModal = ref(false);
@@ -98,6 +106,10 @@ export default defineComponent({
         .reduce((partialSum, a) => partialSum + a, 0)
     );
 
+    onCreateOrderError(() => {
+      showErrorToast(errorSubmitOrder);
+    });
+
     return {
       showCancelOrderModal,
       showSubmitOrderModal,
@@ -105,6 +117,7 @@ export default defineComponent({
       orderItems: store.state.order.orderItems,
       buttonTypes: ButtonTypes,
       orderTotal,
+      createOrderExec,
     };
   },
   data() {
@@ -139,23 +152,29 @@ export default defineComponent({
     onModalClosedSubmit(value: { retVal: boolean }) {
       const { retVal } = value;
       this.showSubmitOrderModal = false;
+      const data = {
+        orderDetails: JSON.stringify(this.orderItems),
+        kioskId: this.$store.state.auth.kioskId,
+      };
 
-      const submitToBackend = async () => {
-        const data = {
-          orderDetails: JSON.stringify(this.orderItems),
-          kioskId: this.$store.state.auth.kioskId,
-        };
+      const submitToBackendSanityStrapi = async () => {
         try {
           const orderId = await saveOrder(data);
           this.orderId = orderId;
           this.showSubmittedOrderModal = true;
         } catch {
-          showErrorToast("Error in submitting order!");
+          showErrorToast(errorSubmitOrder);
         }
       };
 
       if (retVal) {
-        submitToBackend();
+        if (bEServerType === "STRAPI" || bEServerType === "SANITY") {
+          submitToBackendSanityStrapi();
+          return;
+        }
+        this.createOrderExec({
+          data,
+        });
       }
     },
     onModalClosedSubmitted() {
