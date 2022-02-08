@@ -81,7 +81,7 @@ import { useStore } from "../store";
 import NavButton from "../common/NavButton.vue";
 import Modal from "../common/Modal.vue";
 import { ButtonTypes } from "../enums/ButtonTypes";
-import { saveOrder } from "../api/strapi";
+import { saveOrder } from "../api";
 import { showErrorToast } from "../utils/toaster";
 
 export default defineComponent({

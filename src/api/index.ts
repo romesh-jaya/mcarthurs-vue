@@ -4,12 +4,15 @@ import {
   getCategories as getCategoriesStrapi,
   getItems as getItemsStrapi,
   login as loginStrapi,
+  saveOrder as saveOrderStrapi,
 } from "./strapi";
 import {
   getCategories as getCategoriesSanity,
   getItems as getItemsSanity,
+  saveOrder as saveOrderSanity,
 } from "./sanity";
 import { AuthInfo } from "@/types/AuthInfo";
+import { OrderInfo } from "@/types/OrderInfo";
 
 export type BasicData = {
   categoryData: Category[];
@@ -44,6 +47,18 @@ export const login = async (
     return {
       jwt: import.meta.env.VITE_SANITY_TOKEN,
     };
+  }
+
+  throw new Error("Matching VITE_BE_SERVER env variable not found");
+};
+
+export const saveOrder = async (data: OrderInfo): Promise<number> => {
+  if (import.meta.env.VITE_BE_SERVER === "STRAPI") {
+    return await saveOrderStrapi(data);
+  }
+
+  if (import.meta.env.VITE_BE_SERVER === "SANITY") {
+    return await saveOrderSanity(data);
   }
 
   throw new Error("Matching VITE_BE_SERVER env variable not found");
