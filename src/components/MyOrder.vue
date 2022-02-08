@@ -66,8 +66,9 @@
       </template>
       <template #body>
         <p>
-          Your order has been submitted! Order No:
-          {{ orderId }}
+          Thank you for ordering! Your Order No:
+          <!-- Note: only last 2 digits are required to be shown as the volume of order won't be that great -->
+          {{ orderId.toString().slice(-2) }}
         </p>
       </template>
     </Modal>

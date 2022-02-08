@@ -21,7 +21,7 @@ export const getDataFromLocalStorage = (): AuthInfo | undefined => {
       return;
     }
     if (userInfo.serverType !== import.meta.env.VITE_BE_SERVER) {
-      // JWT is from a different BE server
+      console.info("JWT is from a different BE server, removing token");
       localStorage.removeItem("user");
       return;
     }
@@ -31,6 +31,7 @@ export const getDataFromLocalStorage = (): AuthInfo | undefined => {
 
     if (timeLapsedMs / (1000 * 60) > JWT_TIMEOUT) {
       // if the last login was greater than 30 mins, which is the dyno discarding time in Strapi
+      console.info("JWT expired, removing token");
       localStorage.removeItem("user");
       return;
     }

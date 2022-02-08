@@ -25,14 +25,17 @@
         <span>{{ kioskIdError }}</span>
       </div>
       <div class="button-container">
-        <PrimaryButton button-type="submit">Login</PrimaryButton>
+        <PrimaryButton button-type="submit" :disabled="loading" center-content>
+          <Spinner v-if="loading" class="spinner" />
+          Login</PrimaryButton
+        >
       </div>
     </form>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import PrimaryButton from "../common/PrimaryButton.vue";
 import {
   useForm,
@@ -52,11 +55,13 @@ import {
   getKioskIdFromLocalStorage,
   saveKioskIdToLocalStorage,
 } from "../utils/kioskInfo";
+import Spinner from "../common/Spinner.vue";
 
 export default defineComponent({
   name: "Landing",
   components: {
     PrimaryButton,
+    Spinner,
   },
   setup() {
     // Define a validation schema
@@ -74,11 +79,13 @@ export default defineComponent({
     const router = useRouter();
     const toast = useToast();
     const store = useStore();
+    const loading = ref(false);
 
     const onSubmit = async () => {
       await validate();
       if (isFormValid.value) {
         try {
+          loading.value = true;
           const data = await login(email.value, password.value);
           if (data) {
             saveDataToLocalStorage(data);
@@ -96,6 +103,8 @@ export default defineComponent({
             return;
           }
           showErrorToast("Unknown error occured while logging in");
+        } finally {
+          loading.value = false;
         }
       }
     };
@@ -133,6 +142,7 @@ export default defineComponent({
       kioskId,
       kioskIdError,
       onSubmit,
+      loading,
     };
   },
 });
@@ -182,5 +192,9 @@ export default defineComponent({
   flex: 1 0px;
   display: grid;
   place-items: center;
+}
+
+.spinner {
+  margin-inline-end: 1rem;
 }
 </style>

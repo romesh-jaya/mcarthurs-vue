@@ -2,6 +2,7 @@
   <Button
     class="primary-button"
     :button-type="buttonType"
+    :disabled="disabled"
     @on-click="$emit('on-click')"
   >
     <slot></slot>
@@ -15,7 +16,11 @@ import Button from "./Button.vue";
 export default defineComponent({
   name: "PrimaryButton",
   components: { Button },
-  props: { buttonType: { default: "button", type: String } },
+  props: {
+    buttonType: { default: "button", type: String },
+    disabled: Boolean,
+    centerContent: Boolean,
+  },
   emits: ["on-click"],
 });
 </script>
