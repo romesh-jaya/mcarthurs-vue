@@ -8,7 +8,7 @@ import {
 import { store } from "./store";
 
 const httpLink = createHttpLink({
-  uri: import.meta.env.VITE_BE_URL_GRAPHCMS,
+  uri: import.meta.env.VITE_NODE_URL + "/api/graphcms",
 });
 
 const additiveLink = from([

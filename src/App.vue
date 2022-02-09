@@ -50,13 +50,20 @@ export default defineComponent({
     };
 
     // Fetch data
-    if (bEServerType === "STRAPI" || bEServerType === "SANITY") {
-      fetchBasicDataStrapiSanity();
-    } else if (bEServerType === "GRAPHCMS") {
-      enabledGraphCMS.value = true;
-    } else {
-      throw new Error("Matching VITE_BE_SERVER env variable not found");
-    }
+    watch(
+      () => store.state.auth.user,
+      () => {
+        if (store.state.auth.user?.jwt) {
+          if (bEServerType === "STRAPI" || bEServerType === "SANITY") {
+            fetchBasicDataStrapiSanity();
+          } else if (bEServerType === "GRAPHCMS") {
+            enabledGraphCMS.value = true;
+          } else {
+            throw new Error("Matching VITE_BE_SERVER env variable not found");
+          }
+        }
+      }
+    );
 
     // watchers to store GraphCMS results
     watch(itemsResult, () => {

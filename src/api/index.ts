@@ -11,6 +11,7 @@ import {
   getItems as getItemsSanity,
   saveOrder as saveOrderSanity,
 } from "./sanity";
+import { login as loginGraphCMS } from "./graphcms";
 import { AuthInfo } from "@/types/AuthInfo";
 import { OrderInfo } from "@/types/OrderInfo";
 
@@ -50,9 +51,7 @@ export const login = async (
   }
 
   if (import.meta.env.VITE_BE_SERVER === "GRAPHCMS") {
-    return {
-      jwt: import.meta.env.VITE_GRAPHCMS_TOKEN,
-    };
+    return await loginGraphCMS(email, password);
   }
 
   throw new Error("Matching VITE_BE_SERVER env variable not found");
