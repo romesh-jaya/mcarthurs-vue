@@ -94,9 +94,13 @@ export default defineComponent({
   components: { NavButton, Modal },
   setup() {
     const store = useStore();
-    const { mutate: createOrderExec, onError: onCreateOrderError } =
-      useMutation(createOrder);
+    const {
+      mutate: createOrderExec,
+      onError: onCreateOrderError,
+      onDone: onCreateOrderDone,
+    } = useMutation(createOrder);
 
+    const orderId = ref(-1);
     const showCancelOrderModal = ref(false);
     const showSubmitOrderModal = ref(false);
     const showSubmittedOrderModal = ref(false);
@@ -110,6 +114,13 @@ export default defineComponent({
       showErrorToast(errorSubmitOrder);
     });
 
+    onCreateOrderDone(() => {
+      // Note: in GRAPHCMS, there is no way to find out the last Order ID without race conditions
+      // Therefore we are simply hard-coding the orderId as 1
+      orderId.value = 1;
+      showSubmittedOrderModal.value = true;
+    });
+
     return {
       showCancelOrderModal,
       showSubmitOrderModal,
@@ -118,10 +129,8 @@ export default defineComponent({
       buttonTypes: ButtonTypes,
       orderTotal,
       createOrderExec,
+      orderId,
     };
-  },
-  data() {
-    return { orderId: -1 };
   },
   methods: {
     onCancelOrderClicked() {
