@@ -28,9 +28,11 @@
     <div class="navbar-bottom">
       <NavButton @on-click="onCancelOrderClicked">CANCEL ORDER</NavButton>
       <NavButton
-        :disabled="orderItems.length === 0"
+        :disabled="orderItems.length === 0 || savingDataInProgress"
+        center-content
         @on-click="onSubmitOrderClicked"
-        >SUBMIT ORDER</NavButton
+        ><Spinner v-if="savingDataInProgress" class="spinner" />SUBMIT
+        ORDER</NavButton
       >
       <NavButton @on-click="onAddAnotherClicked">{{
         orderItems.length > 0 ? "ADD ANOTHER ITEM" : "ADD ITEM"
@@ -85,13 +87,14 @@ import { ButtonTypes } from "../enums/ButtonTypes";
 import { saveOrder } from "../api";
 import { showErrorToast } from "../utils/toaster";
 import { createOrder } from "../queries";
+import Spinner from "../common/Spinner.vue";
 
 const bEServerType = import.meta.env.VITE_BE_SERVER;
 const errorSubmitOrder = "Error in submitting order! Please contact desk";
 
 export default defineComponent({
   name: "MyOrder",
-  components: { NavButton, Modal },
+  components: { NavButton, Modal, Spinner },
   setup() {
     const store = useStore();
     const {
@@ -100,6 +103,7 @@ export default defineComponent({
       onDone: onCreateOrderDone,
     } = useMutation(createOrder);
 
+    const savingDataInProgress = ref(false);
     const orderId = ref(-1);
     const showCancelOrderModal = ref(false);
     const showSubmitOrderModal = ref(false);
@@ -112,12 +116,14 @@ export default defineComponent({
 
     onCreateOrderError(() => {
       showErrorToast(errorSubmitOrder);
+      savingDataInProgress.value = false;
     });
 
     onCreateOrderDone(() => {
       // Note: in GRAPHCMS, there is no way to find out the last Order ID without race conditions
       // Therefore we are simply hard-coding the orderId as 1
       orderId.value = 1;
+      savingDataInProgress.value = false;
       showSubmittedOrderModal.value = true;
     });
 
@@ -130,6 +136,7 @@ export default defineComponent({
       orderTotal,
       createOrderExec,
       orderId,
+      savingDataInProgress,
     };
   },
   methods: {
@@ -173,10 +180,13 @@ export default defineComponent({
           this.showSubmittedOrderModal = true;
         } catch {
           showErrorToast(errorSubmitOrder);
+        } finally {
+          this.savingDataInProgress = false;
         }
       };
 
       if (retVal) {
+        this.savingDataInProgress = true;
         if (bEServerType === "STRAPI" || bEServerType === "SANITY") {
           submitToBackendSanityStrapi();
           return;
@@ -242,5 +252,9 @@ export default defineComponent({
   .edit-icon:nth-child(2) {
     display: none;
   }
+}
+
+.spinner {
+  margin-inline-end: 1rem;
 }
 </style>

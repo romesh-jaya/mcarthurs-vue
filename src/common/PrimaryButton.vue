@@ -3,6 +3,7 @@
     class="primary-button"
     :button-type="buttonType"
     :disabled="disabled"
+    :center-content="centerContent"
     @on-click="$emit('on-click')"
   >
     <slot></slot>

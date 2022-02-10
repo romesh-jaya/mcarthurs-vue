@@ -1,7 +1,7 @@
 <template>
   <button
     class="button"
-    :class="{ disabled: disabled, centerContent: centerContent }"
+    :class="{ disabled: disabled, 'center-content': centerContent }"
     :disabled="disabled"
     :type="buttonTypeComputed"
     @click="$emit('on-click')"
@@ -35,7 +35,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
 .button {
   place-items: center;
   padding-inline: 0.5rem;
