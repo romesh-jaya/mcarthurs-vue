@@ -11,7 +11,7 @@ import {
   getItems as getItemsSanity,
   saveOrder as saveOrderSanity,
 } from "./sanity";
-import { login as loginGraphCMS } from "./graphcms";
+import { login as loginNodeJS } from "./nodejs";
 import { AuthInfo } from "@/types/AuthInfo";
 import { OrderInfo } from "@/types/OrderInfo";
 
@@ -44,12 +44,11 @@ export const login = async (
     return await loginStrapi(email, password);
   }
 
-  if (import.meta.env.VITE_BE_SERVER === "SANITY") {
-    return await loginGraphCMS(email, password);
-  }
-
-  if (import.meta.env.VITE_BE_SERVER === "GRAPHCMS") {
-    return await loginGraphCMS(email, password);
+  if (
+    import.meta.env.VITE_BE_SERVER === "SANITY" ||
+    import.meta.env.VITE_BE_SERVER === "GRAPHCMS"
+  ) {
+    return await loginNodeJS(email, password);
   }
 
   throw new Error("Matching VITE_BE_SERVER env variable not found");

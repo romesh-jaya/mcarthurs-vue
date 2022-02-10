@@ -98,7 +98,10 @@ export default defineComponent({
           }
         } catch (err) {
           const error = err as AxiosError;
-          if (error.response?.status === 400) {
+          if (
+            error.response?.status === 400 ||
+            error.response?.status === 401
+          ) {
             showErrorToast("Invalid credentials");
             return;
           }

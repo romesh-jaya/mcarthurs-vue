@@ -3,7 +3,6 @@ import { Category } from "@/types/Category";
 import { Item } from "@/types/Item";
 import { store } from "../../store";
 import { OrderInfo } from "@/types/OrderInfo";
-import { AuthInfo } from "@/types/AuthInfo";
 
 // Note: the long query is because it is a GROQ query, converted into URL
 export const getCategories = async (): Promise<Category[]> => {
@@ -63,16 +62,4 @@ export const saveOrder = async (data: OrderInfo): Promise<number> => {
   // Therefore we are simply hard-coding the orderId as 1
   // ref: https://stackoverflow.com/questions/50154648/how-to-increment-property-per-document-in-sanity
   return tempOrderId;
-};
-
-export const login = async (
-  email: string,
-  password: string
-): Promise<AuthInfo> => {
-  const { data } = await axios.post<AuthInfo>("/auth/login", {
-    email,
-    password,
-  });
-
-  return data;
 };
