@@ -14,6 +14,8 @@ Tech stack used:
 - Composition API
 - vee-validate for form validation
 - Authentication
+- Apollo client
+- Axios interceptors
 
 Backend integration with:
 
@@ -21,7 +23,7 @@ Backend integration with:
 - SANITY
 - GRAPHCMS
 
-The same dataset is present in all 3 backends. 3 different backends have been used for demo purposes only.
+The same dataset is present in all 3 backends. 3 different backends have been used for demo purposes only. The type of BE used can be changed via the env variable VITE_BE_SERVER.
 
 Site is hosted here:
 https://mcarthurs-kiosk.web.app/
@@ -33,6 +35,8 @@ password: mcarthur1
 Note: Logout functionality hasn't been provided in the app, as we don't expect the Kiosk users to be able to logout by themselves. Instead, there is a 30 min timeout and store clerk can manually clear the browser cache if needed to logout.
 
 The Sanity and GraphCMS servers are interfaced via a NodeJS middleware, which is used to hide the sensitive API keys for Sanity and GraphCMS.
+
+Strapi and Sanity use axios while GraphCMS uses Apollo client to communicate with backend.
 
 ## Project setup
 
