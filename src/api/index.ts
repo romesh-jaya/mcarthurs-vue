@@ -45,9 +45,7 @@ export const login = async (
   }
 
   if (import.meta.env.VITE_BE_SERVER === "SANITY") {
-    return {
-      jwt: import.meta.env.VITE_SANITY_TOKEN,
-    };
+    return await loginGraphCMS(email, password);
   }
 
   if (import.meta.env.VITE_BE_SERVER === "GRAPHCMS") {

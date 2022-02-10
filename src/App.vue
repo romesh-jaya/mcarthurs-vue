@@ -49,9 +49,9 @@ export default defineComponent({
       }
     };
 
-    // Fetch data
+    // Fetch data after login
     watch(
-      () => store.state.auth.user,
+      () => store.state.auth.user?.jwt,
       () => {
         if (store.state.auth.user?.jwt) {
           if (bEServerType === "STRAPI" || bEServerType === "SANITY") {

@@ -32,6 +32,8 @@ password: mcarthur1
 
 Note: Logout functionality hasn't been provided in the app, as we don't expect the Kiosk users to be able to logout by themselves. Instead, there is a 30 min timeout and store clerk can manually clear the browser cache if needed to logout.
 
+The Sanity and GraphCMS servers are interfaced via a NodeJS middleware, which is used to hide the sensitive API keys for Sanity and GraphCMS.
+
 ## Project setup
 
 ```
