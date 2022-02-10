@@ -25,10 +25,18 @@
         <span>{{ kioskIdError }}</span>
       </div>
       <div class="button-container">
-        <PrimaryButton button-type="submit" :disabled="loading" center-content>
+        <PrimaryButton
+          button-type="submit"
+          :disabled="loading"
+          center-content
+          class="login-button"
+        >
           <Spinner v-if="loading" class="spinner" />
           Login</PrimaryButton
         >
+        <div v-if="showPleaseWaitTrigger" class="please-wait-text">
+          Please wait... Server is taking a long time to respond
+        </div>
       </div>
     </form>
   </div>
@@ -56,6 +64,7 @@ import {
   saveKioskIdToLocalStorage,
 } from "../utils/kioskInfo";
 import Spinner from "../common/Spinner.vue";
+import useDebouncedRef from "../composables/useDebouncedRef";
 
 export default defineComponent({
   name: "Landing",
@@ -80,12 +89,15 @@ export default defineComponent({
     const toast = useToast();
     const store = useStore();
     const loading = ref(false);
+    // showPleaseWaitTrigger turns true when assigned, only after specified timeout (4000ms)
+    const showPleaseWaitTrigger = useDebouncedRef(false, 4000);
 
     const onSubmit = async () => {
       await validate();
       if (isFormValid.value) {
         try {
           loading.value = true;
+          showPleaseWaitTrigger.value = true;
           const data = await login(email.value, password.value);
           if (data) {
             saveDataToLocalStorage(data);
@@ -146,6 +158,7 @@ export default defineComponent({
       kioskIdError,
       onSubmit,
       loading,
+      showPleaseWaitTrigger,
     };
   },
 });
@@ -193,8 +206,23 @@ export default defineComponent({
 
 .button-container {
   flex: 1 0px;
-  display: grid;
-  place-items: center;
+  position: relative;
+}
+
+.login-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.please-wait-text {
+  position: absolute;
+  top: 82%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  width: 100%;
 }
 
 .spinner {
