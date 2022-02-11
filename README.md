@@ -12,12 +12,18 @@ Login credentials:
 
 ## Screenshots
 
+<style>
+img[src*="#contain"] {
+object-fit: contain;
+}
+</style>
+
 <p align="center">
 Home Page
 </p>
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/56665179/153539385-e949c174-fd29-4709-afd1-cb46f15be2c4.png" height="400" alt="Home page" style="object-fit: contain;" >
+  <img src="https://user-images.githubusercontent.com/56665179/153539385-e949c174-fd29-4709-afd1-cb46f15be2c4.png#contain" height="400" alt="Home page"  >
 </div>
 
 ---
@@ -27,7 +33,7 @@ Category Selection
 </p>
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/56665179/153539947-dda946d0-5797-4b06-a675-8d92bb62a7e4.png" height="400" alt="Category Selection" style="object-fit: contain;" >
+  <img src="https://user-images.githubusercontent.com/56665179/153539947-dda946d0-5797-4b06-a675-8d92bb62a7e4.png#contain" height="400" alt="Category Selection"  >
 </div>
 
 ---
@@ -37,7 +43,7 @@ Item Quantity Selection
 </p>
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/56665179/153539949-254642ce-3b0a-45fe-9a2a-37db4502951d.png" height="400" alt="Item Quantity Selection" style="object-fit: contain;" >
+  <img src="https://user-images.githubusercontent.com/56665179/153539949-254642ce-3b0a-45fe-9a2a-37db4502951d.png#contain" height="400" alt="Item Quantity Selection"  >
 </div>
 
 ---
@@ -47,7 +53,7 @@ Order Details
 </p>
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/56665179/153539952-f27a4078-6961-4052-b62f-f8a845e10c2e.png" height="400" alt="Order Details" style="object-fit: contain;" >
+  <img src="https://user-images.githubusercontent.com/56665179/153539952-f27a4078-6961-4052-b62f-f8a845e10c2e.png#contain" height="400" alt="Order Details"  >
 </div>
 
 ---
@@ -57,7 +63,7 @@ Order Confirmation
 </p>
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/56665179/153539943-9eb448ad-d32c-4347-97e8-937083d26177.png" height="400" alt="Order Confirmation" style="object-fit: contain;" >
+  <img src="https://user-images.githubusercontent.com/56665179/153539943-9eb448ad-d32c-4347-97e8-937083d26177.png#contain" height="400" alt="Order Confirmation"  >
 </div>
 
 ---
