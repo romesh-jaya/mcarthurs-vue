@@ -20,6 +20,8 @@ Home Page
   <img src="https://user-images.githubusercontent.com/56665179/153539385-e949c174-fd29-4709-afd1-cb46f15be2c4.png" height="400" alt="Home page">
 </div>
 
+---
+
 <p align="center">
 Category Selection
 </p>
@@ -27,6 +29,8 @@ Category Selection
 <div align="center">
   <img src="https://user-images.githubusercontent.com/56665179/153539947-dda946d0-5797-4b06-a675-8d92bb62a7e4.png" height="400" alt="Category Selection">
 </div>
+
+---
 
 <p align="center">
 Item Quantity Selection
@@ -36,6 +40,8 @@ Item Quantity Selection
   <img src="https://user-images.githubusercontent.com/56665179/153539949-254642ce-3b0a-45fe-9a2a-37db4502951d.png" height="400" alt="Item Quantity Selection">
 </div>
 
+---
+
 <p align="center">
 Order Details
 </p>
@@ -44,6 +50,8 @@ Order Details
   <img src="https://user-images.githubusercontent.com/56665179/153539952-f27a4078-6961-4052-b62f-f8a845e10c2e.png" height="400" alt="Order Details">
 </div>
 
+---
+
 <p align="center">
 Order Confirmation
 </p>
@@ -51,6 +59,8 @@ Order Confirmation
 <div align="center">
   <img src="https://user-images.githubusercontent.com/56665179/153539943-9eb448ad-d32c-4347-97e8-937083d26177.png" height="400" alt="Order Confirmation">
 </div>
+
+---
 
 ## Architecture
 
