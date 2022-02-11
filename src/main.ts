@@ -2,6 +2,7 @@ import { createApp, provide, h } from "vue";
 import App from "./App.vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import { useRegisterSW } from "virtual:pwa-register/vue";
 
 import { DefaultApolloClient } from "@vue/apollo-composable";
 import Toast, { PluginOptions } from "vue-toastification";
@@ -15,6 +16,11 @@ import router from "./router";
 const app = createApp({
   setup() {
     provide(DefaultApolloClient, apolloClient);
+    useRegisterSW({
+      onOfflineReady() {
+        console.log("Ready for offline usage");
+      },
+    });
   },
 
   render: () => h(App),
