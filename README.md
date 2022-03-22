@@ -5,6 +5,7 @@ This PWA application, written in Vue.js is meant to be used in a self-service ki
 Site is hosted here:
 https://mcarthurs-kiosk.web.app/
 
+
 Login credentials:
 
 - email: user1@mcarthurs.com

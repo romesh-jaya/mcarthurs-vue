@@ -207,6 +207,7 @@ export default defineComponent({
 .button-container {
   flex: 1 0px;
   position: relative;
+  min-height: 200px;
 }
 
 .login-button {
