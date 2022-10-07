@@ -119,6 +119,7 @@ export default defineComponent({
           }
           showErrorToast("Unknown error occured while logging in");
         } finally {
+          showPleaseWaitTrigger.value = false;
           loading.value = false;
         }
       }
