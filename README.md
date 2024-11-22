@@ -2,14 +2,6 @@
 
 This PWA application, written in Vue.js is meant to be used in a self-service kiosk at a fast food restaurant. Users can choose which items they like and submit to the kitchen for preperation. Requires a touch-capable device with minimum display resolution of 1024\*768 in lanscape orientation. Keyboard is required for store clerk to login to the device (only at the start of the day maybe).
 
-Site is hosted here:
-https://mcarthurs-kiosk.web.app/
-
-
-Login credentials:
-
-- email: user1@mcarthurs.com
-- password: mcarthur1
 
 ## Screenshots
 
